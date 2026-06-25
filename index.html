@@ -4,53 +4,64 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>深圳湾公园 · 智慧园林AI平台</title>
 <style>
-:root{--b:#2563eb;--b2:#1d4ed8;--dk:#0f172a;--d2:#1e293b;--g:#64748b;--lt:#f8fafc;--w:#fff;--grn:#059669;--amb:#d97706;--red:#dc2626;--tel:#0d9488;--brd:#e2e8f0;--f:system-ui,sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--f);color:var(--d2);background:#0a1628}
-.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#1a365d 50%,#2563eb 100%);position:relative;overflow:hidden}
-.login-wrap::before{content:'';position:absolute;top:-30%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(37,99,235,.25),transparent 70%);border-radius:50%}
-.login-wrap::after{content:'';position:absolute;bottom:-20%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(5,150,105,.15),transparent 70%);border-radius:50%}
-.login-box{position:relative;z-index:1;background:rgba(255,255,255,.97);border-radius:20px;padding:40px 36px;width:520px;box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center}
-.login-box .logo{font-size:24px;font-weight:800;color:var(--dk);margin-bottom:4px}
-.login-box .logo span{color:var(--grn)}.login-box .sub{font-size:13px;color:var(--g);margin-bottom:24px}
+:root{--b:#4f46e5;--bs:#4338ca;--dk:#0f172a;--s2:#334155;--g:#64748b;--gl:#94a3b8;--lt:#f1f5f9;--w:#fff;--grn:#059669;--amb:#d97706;--red:#dc2626;--tel:#0d9488;--brd:#e2e8f0;--f:system-ui,-apple-system,sans-serif;--sh:0 1px 2px rgba(0,0,0,.04),0 2px 8px rgba(0,0,0,.04)}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--f);color:var(--s2);background:#f0f4f8}
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 40%,#312e81 70%,#4338ca 100%);position:relative;overflow:hidden}
+.login-wrap::before{content:'';position:absolute;top:-40%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%);border-radius:50%}
+.login-wrap::after{content:'';position:absolute;bottom:-30%;left:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(5,150,105,.12),transparent 70%);border-radius:50%}
+.login-box{position:relative;z-index:1;background:rgba(255,255,255,.98);border-radius:24px;padding:44px 40px;width:560px;box-shadow:0 24px 80px rgba(0,0,0,.25);text-align:center;backdrop-filter:blur(20px)}
+.login-box .logo{font-size:26px;font-weight:800;color:var(--dk);margin-bottom:2px;letter-spacing:-.5px}
+.login-box .logo span{background:linear-gradient(135deg,#059669,#0d9488);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.login-box .sub{font-size:13px;color:var(--g);margin-bottom:28px}
 .login-box .roles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
-.login-box .role-card{padding:14px 10px;border:2px solid var(--brd);border-radius:12px;cursor:pointer;transition:.2s;text-align:center}
-.login-box .role-card:hover{border-color:var(--b);background:var(--lt)}
-.login-box .role-card.sel{border-color:var(--grn);background:#f0fdf4;box-shadow:0 0 0 3px rgba(5,150,105,.15)}
-.login-box .role-card .ri{font-size:28px;margin-bottom:4px}
-.login-box .role-card .rn{font-size:13px;font-weight:700}.login-box .role-card .rd{font-size:10px;color:var(--g);margin-top:2px}
-.login-box .btn-login{padding:12px 48px;background:var(--grn);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px;width:100%}
-.login-box .btn-login:hover{background:#047857}
-.app{display:flex;height:100vh;background:var(--lt);display:none}.app.on{display:flex}
-.side{width:220px;background:var(--dk);color:#fff;flex-shrink:0;display:flex;flex-direction:column}
-.side .lo{padding:18px 20px;font-size:16px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:6px}
-.side .lo span{color:#34d399}
-.side .park{font-size:10px;color:rgba(255,255,255,.4);padding:4px 20px 0}
-.side nav{flex:1;padding:12px}.side nav a{display:flex;align-items:center;gap:8px;padding:9px 12px;color:rgba(255,255,255,.5);text-decoration:none;border-radius:8px;font-size:12px;margin-bottom:2px;transition:.2s}
-.side nav a:hover,.side nav a.at{background:rgba(255,255,255,.1);color:#fff}
-.side .user-info{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;display:flex;align-items:center;gap:8px;cursor:pointer}
-.side .user-info .avatar{width:32px;height:32px;border-radius:50%;background:var(--grn);display:flex;align-items:center;justify-content:center;font-size:14px}
-.main{flex:1;overflow-y:auto}header{padding:14px 24px;background:var(--w);border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between}
-header h1{font-size:18px;font-weight:700}
-.page{padding:20px 24px;max-width:1200px;display:none}.page.on{display:block}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.stat{background:var(--w);border-radius:12px;padding:20px;border:1px solid var(--brd);text-align:center}
-.stat .n{font-size:30px;font-weight:900;color:var(--b)}.stat .l{font-size:10px;color:var(--g);margin-top:2px}
-.card{background:var(--w);border-radius:12px;padding:18px;border:1px solid var(--brd);margin-bottom:14px}
-table{width:100%;border-collapse:collapse;font-size:11px;background:var(--w);border-radius:10px;overflow:hidden;border:1px solid var(--brd)}
-th{background:var(--dk);color:#fff;padding:8px 12px;text-align:left;font-weight:600;font-size:10px}
-td{padding:7px 12px;border-bottom:1px solid var(--brd)}tr:last-child td{border-bottom:none}tr:nth-child(even){background:var(--lt)}
-.tag{padding:2px 7px;border-radius:10px;font-size:9.5px;font-weight:600}.tg{background:#d1fae5;color:var(--grn)}.tb{background:#dbeafe;color:var(--b)}.ta{background:#fef3c7;color:var(--amb)}.tr{background:#fee2e2;color:var(--red)}.tp{background:#ede9fe;color:#7c3aed}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.tabs{display:flex;gap:4px;margin-bottom:14px;border-bottom:2px solid var(--brd)}
-.tab{padding:7px 14px;font-size:11px;cursor:pointer;color:var(--g);border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s;font-weight:500}
-.tab.at{color:var(--b);border-bottom-color:var(--b);font-weight:700}
+.login-box .role-card{padding:16px 12px;border:2px solid var(--brd);border-radius:14px;cursor:pointer;transition:.2s;text-align:center}
+.login-box .role-card:hover{border-color:#a5b4fc;background:#eef2ff;transform:translateY(-1px)}
+.login-box .role-card.sel{border-color:var(--grn);background:#ecfdf5;box-shadow:0 0 0 4px rgba(5,150,105,.1)}
+.login-box .role-card .ri{font-size:30px;margin-bottom:6px}
+.login-box .role-card .rn{font-size:13px;font-weight:700}.login-box .role-card .rd{font-size:10px;color:var(--g);margin-top:4px}
+.login-box .btn-login{margin-top:12px;padding:14px 0;background:linear-gradient(135deg,#059669,#0d9488);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;width:100%;letter-spacing:.5px}
+.login-box .btn-login:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(5,150,105,.25)}
+.app{display:flex;height:100vh;display:none}.app.on{display:flex}
+.side{width:232px;background:linear-gradient(180deg,#0f172a 0%,#1e293b 100%);color:#fff;flex-shrink:0;display:flex;flex-direction:column}
+.side .lo{padding:20px 22px;font-size:16px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px}
+.side .lo .dot{width:8px;height:8px;background:#34d399;border-radius:50%;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.side .park{font-size:10px;color:rgba(255,255,255,.3);padding:6px 22px 0;letter-spacing:.5px}
+.side nav{flex:1;padding:14px 10px}.side nav a{display:flex;align-items:center;gap:10px;padding:10px 14px;color:rgba(255,255,255,.45);text-decoration:none;border-radius:10px;font-size:12.5px;margin-bottom:2px;transition:.15s;font-weight:500}
+.side nav a:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.8)}
+.side nav a.at{background:rgba(79,70,229,.3);color:#fff;font-weight:600}
+.side .user-info{padding:16px 22px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:.15s}
+.side .user-info:hover{background:rgba(255,255,255,.03)}
+.side .user-info .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:15px}
+.main{flex:1;overflow-y:auto;background:var(--lt)}header{padding:16px 28px;background:var(--w);border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:19px;font-weight:700;color:var(--dk);letter-spacing:-.3px}
+.page{padding:24px 28px;max-width:1280px;display:none}.page.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat{background:var(--w);border-radius:14px;padding:22px 20px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.stat:nth-child(1)::before{background:var(--grn)}.stat:nth-child(2)::before{background:var(--red)}.stat:nth-child(3)::before{background:var(--b)}.stat:nth-child(4)::before{background:var(--tel)}
+.stat .n{font-size:34px;font-weight:900;letter-spacing:-1px}.stat .l{font-size:11px;color:var(--g);margin-top:4px;font-weight:500}
+.card{background:var(--w);border-radius:14px;padding:20px 22px;box-shadow:var(--sh);margin-bottom:16px}
+.card h3{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--dk)}
+table{width:100%;border-collapse:collapse;font-size:11.5px;background:var(--w);border-radius:10px;overflow:hidden}
+th{background:#f8fafc;color:var(--s2);padding:10px 14px;text-align:left;font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--brd)}
+td{padding:9px 14px;border-bottom:1px solid #f1f5f9;font-size:11px}tr:last-child td{border-bottom:none}tr:hover td{background:#f8fafc}
+.tag{padding:3px 8px;border-radius:8px;font-size:9.5px;font-weight:600;letter-spacing:.3px}.tg{background:#d1fae5;color:#065f46}.tb{background:#dbeafe;color:#1e40af}.ta{background:#fef3c7;color:#92400e}.tr{background:#fee2e2;color:#991b1b}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tabs{display:flex;gap:6px;margin-bottom:18px}
+.tab{padding:8px 18px;font-size:12px;cursor:pointer;color:var(--g);border-radius:10px;transition:.15s;font-weight:500;background:transparent}
+.tab:hover{background:var(--w);color:var(--s2)}
+.tab.at{background:var(--b);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(79,70,229,.25)}
 .tab-body{display:none}.tab-body.on{display:block}
-.btn{padding:7px 14px;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:.2s}.bp{background:var(--b);color:#fff}.bg{background:var(--grn);color:#fff}.bo{border:1px solid var(--brd);background:var(--w)}.bs{padding:4px 10px;font-size:10px}
-.bar{display:flex;align-items:center;gap:8px}.bar .trk{flex:1;background:#e2e8f0;border-radius:3px;height:5px;overflow:hidden}.bar .fl{height:5px;border-radius:3px;background:var(--grn)}
-.map-box{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:12px;height:350px;display:flex;align-items:center;justify-content:center;color:var(--b);font-size:22px;border:2px dashed var(--b);font-weight:700}
-.drone-box{border:2px dashed var(--brd);border-radius:12px;padding:40px;text-align:center;cursor:pointer;margin:12px 0}
-.drone-box:hover{border-color:var(--grn)}
-@media(max-width:768px){.side{display:none}.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3{grid-template-columns:1fr}.login-box{width:95%;padding:24px 16px}}
+.btn{padding:8px 16px;border:none;border-radius:8px;font-size:11.5px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.3px}.bp{background:var(--b);color:#fff}.bp:hover{background:var(--bs)}.bg{background:var(--grn);color:#fff}.bg:hover{background:#047857}.bo{border:1.5px solid var(--brd);background:var(--w);color:var(--s2)}.bo:hover{border-color:var(--b)}.bs{padding:5px 12px;font-size:10px}
+.bar{display:flex;align-items:center;gap:10px;padding:5px 0}.bar .trk{flex:1;background:#e2e8f0;border-radius:4px;height:6px;overflow:hidden}.bar .fl{height:6px;border-radius:4px;transition:width .3s}
+.bar .fl.g{background:var(--grn)}.bar .fl.b{background:var(--b)}.bar .fl.a{background:var(--amb)}
+.map-box{background:linear-gradient(135deg,#eef2ff,#e0e7ff);border-radius:14px;height:380px;display:flex;align-items:center;justify-content:center;color:#4338ca;font-size:20px;font-weight:700;border:2px dashed #a5b4fc;flex-direction:column;gap:4px}
+.drone-box{border:2px dashed var(--brd);border-radius:14px;padding:48px;text-align:center;cursor:pointer;margin:12px 0;transition:.15s}
+.drone-box:hover{border-color:var(--b);background:#f8fafc}
+.alert-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f1f5f9}
+.alert-row:last-child{border-bottom:none}
+.alert-row .al-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+@media(max-width:768px){.side{display:none}.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3{grid-template-columns:1fr}.login-box{width:94%;padding:28px 18px}}
 </style>
 </head>
 <body>
@@ -58,14 +69,14 @@ td{padding:7px 12px;border-bottom:1px solid var(--brd)}tr:last-child td{border-b
 <!-- ============ LOGIN ============ -->
 <div class="login-wrap" id="loginPage">
 <div class="login-box">
-<div class="logo">🌿 深圳湾公园<span>·智慧园林</span></div>
-<div class="sub">Smart Garden AI Platform · Shenzhen Bay Park</div>
+<div class="logo">🌿 深圳湾公园<span> · 智慧园林</span></div>
+<div class="sub">Smart Garden AI Platform</div>
 <div class="roles" id="roleCards">
-<div class="role-card sel" data-role="admin" onclick="selRole(this,'admin')"><div class="ri">👤</div><div class="rn">公园管理员</div><div class="rd">全园态势·工单派发·报表</div></div>
-<div class="role-card" data-role="pilot" onclick="selRole(this,'pilot')"><div class="ri">🛸</div><div class="rn">巡检飞手</div><div class="rd">飞行任务·航拍上传</div></div>
-<div class="role-card" data-role="worker" onclick="selRole(this,'worker')"><div class="ri">🔧</div><div class="rn">养护工人</div><div class="rd">工单处置·现场反馈</div></div>
-<div class="role-card" data-role="engineer" onclick="selRole(this,'engineer')"><div class="ri">🧠</div><div class="rn">AI工程师</div><div class="rd">模型指标·标注审核</div></div>
-<div class="role-card" data-role="leader" onclick="selRole(this,'leader')"><div class="ri">📊</div><div class="rn">公园领导</div><div class="rd">GIS大屏·全面看板</div></div>
+<div class="role-card sel" data-role="admin" onclick="selRole(this,'admin')"><div class="ri">👤</div><div class="rn">公园管理员</div><div class="rd">全园态势 · 工单派发 · 报表</div></div>
+<div class="role-card" data-role="pilot" onclick="selRole(this,'pilot')"><div class="ri">🛸</div><div class="rn">巡检飞手</div><div class="rd">飞行任务 · 航拍上传</div></div>
+<div class="role-card" data-role="worker" onclick="selRole(this,'worker')"><div class="ri">🔧</div><div class="rn">养护工人</div><div class="rd">工单处置 · 现场反馈</div></div>
+<div class="role-card" data-role="engineer" onclick="selRole(this,'engineer')"><div class="ri">🧠</div><div class="rn">AI 工程师</div><div class="rd">模型指标 · 标注审核</div></div>
+<div class="role-card" data-role="leader" onclick="selRole(this,'leader')"><div class="ri">📊</div><div class="rn">公园领导</div><div class="rd">GIS 大屏 · 全面看板</div></div>
 </div>
 <button class="btn-login" onclick="doLogin()">进入系统</button>
 </div></div>
@@ -73,107 +84,62 @@ td{padding:7px 12px;border-bottom:1px solid var(--brd)}tr:last-child td{border-b
 <!-- ============ APP ============ -->
 <div class="app" id="appMain">
 <div class="side">
-<div class="lo">🌿 深圳湾公园<span>AI</span></div>
-<div class="park">108公顷 · 1247棵乔木 · 42公顷草坪</div>
+<div class="lo"><div class="dot"></div> 深圳湾公园<span style="color:#a5b4fc;font-weight:400;font-size:13px;margin-left:auto">AI</span></div>
+<div class="park">108 公顷 · 1,247 棵乔木 · 13km 海岸线</div>
 <nav id="sidebarNav"></nav>
-<div class="user-info" onclick="doLogout()"><div class="avatar" id="userAvatar">👤</div><div id="userName">管理员</div><div style="font-size:9px;color:rgba(255,255,255,.3)">点击退出</div></div>
+<div class="user-info" onclick="doLogout()"><div class="avatar" id="userAvatar">👤</div><div id="userName">管理员</div><div style="font-size:9px;color:rgba(255,255,255,.25);margin-left:auto">退出</div></div>
 </div>
 <div class="main"><header><h1 id="pageTitle">📊 工作台</h1><div style="font-size:11px;color:var(--g)" id="headerSub"></div></header>
-<div id="pageContent"></div></div>
-</div>
+<div class="page on" id="page-dash"></div><div class="page" id="page-inspect"></div><div class="page" id="page-tasks"></div><div class="page" id="page-trees"></div><div class="page" id="page-gis"></div></div></div>
 
 <script>
 let currentRole='admin';
-const roleNames={admin:'公园管理员',pilot:'巡检飞手',worker:'养护工人',engineer:'AI工程师',leader:'公园领导'};
-const roleAvatars={admin:'👤',pilot:'🛸',worker:'🔧',engineer:'🧠',leader:'📊'};
+const R={admin:'公园管理员',pilot:'巡检飞手',worker:'养护工人',engineer:'AI工程师',leader:'公园领导'};
+const A={admin:'👤',pilot:'🛸',worker:'🔧',engineer:'🧠',leader:'📊'};
+const routes={admin:['dash','inspect','tasks','trees','gis'],pilot:['dash','inspect'],worker:['dash','tasks'],engineer:['dash','inspect','trees'],leader:['gis','dash']};
+const menuNames={dash:'📊 工作台',inspect:'🛸 AI 巡检',tasks:'📋 工单养护',trees:'🌳 苗木档案',gis:'🗺️ GIS 大屏'};
+const pageTitles={dash:'📊 工作台',inspect:'🛸 AI 巡检',tasks:'📋 工单养护',trees:'🌳 苗木档案',gis:'🗺️ GIS 大屏'};
+const pageSubs={dash:'今日全园关键指标与待处理事项',inspect:'无人机巡检任务 · AI 识别结果审核',tasks:'工单派发 · 现场处置 · 验收闭环',trees:'1,247 棵乔木数字化档案 · GPS 定位标注',gis:'全园态势一屏总览 · 4 区实时监控'};
 
-// ===== SHENZHEN BAY PARK REAL DATA =====
-const parkData={name:'深圳湾公园',areaHa:108,trees:1247,grassHa:42.3,waterHa:15,zones:['A区·红树林保护区','B区·滨海步道区','C区·运动公园区','湖区·内湖水域'],facts:{facilities:230,annualVisitors:4500000,greenCoverage:78.5,coastlineKm:13}};
+// ===== PARK DATA =====
+const P={name:'深圳湾公园',ha:108,trees:1247,grass:42.3,water:15,coverage:78.5,shore:13,zones:['A 区 · 红树林保护区','B 区 · 滨海步道区','C 区 · 运动公园区','湖区 · 内湖水域']};
+const alerts=[{t:'香樟枯黄异常 (3 株)',l:'A 区 · 红树林步道',lv:'高',tm:'10 分钟前',s:'tr'},{t:'榕树蓟马虫害',l:'B 区 · 滨海广场',lv:'中',tm:'1 小时前',s:'ta'},{t:'湖面漂浮垃圾',l:'湖区 · 南侧水域',lv:'中',tm:'2 小时前',s:'ta'},{t:'草坪斑秃检测',l:'C 区 · 运动草坪',lv:'低',tm:'3 小时前',s:'tb'}];
+const pests=[{id:'P001',t:'榕树蓟马',z:'B 区',d:'07-24',sv:'重度',n:35,tr:'吡虫啉 1:1500 + 修剪虫瘿',st:'处置中',by:'陈师傅'},{id:'P002',t:'樟巢螟',z:'A 区',d:'07-22',sv:'中度',n:18,tr:'阿维菌素 1:2000 + 摘除虫巢',st:'已处置',by:'刘师傅'},{id:'P003',t:'白粉病',z:'C 区',d:'07-20',sv:'轻度',n:8,tr:'三唑酮 1:1000 + 清除病叶',st:'已验收',by:'张师傅'},{id:'P004',t:'天牛幼虫',z:'A 区',d:'07-18',sv:'重度',n:5,tr:'敌敌畏注入 + 钩杀',st:'已处置',by:'陈师傅'},{id:'P005',t:'红火蚁',z:'C 区',d:'07-15',sv:'中度',n:12,tr:'饵剂诱杀 + 灌巢',st:'已验收',by:'刘师傅'}];
+const tasks=[{id:'WO-001',tp:'病虫害',d:'榕树蓟马 · 喷施吡虫啉',z:'B 区',pr:'高',w:'陈师傅',st:'处置中',c:850},{id:'WO-002',tp:'枯木清理',d:'香樟 3 株 · 检查追肥',z:'A 区',pr:'高',w:'刘师傅',st:'待派发',c:1200},{id:'WO-003',tp:'湖面清洁',d:'漂浮垃圾 · 安排保洁船',z:'湖区',pr:'中',w:'-',st:'待派发',c:300},{id:'WO-004',tp:'设施维修',d:'步道护栏破损更换',z:'B 区',pr:'中',w:'王师傅',st:'处置中',c:560},{id:'WO-005',tp:'草坪修复',d:'斑秃 30 ㎡补种',z:'C 区',pr:'低',w:'李师傅',st:'待验收',c:420}];
+const trees=[{id:'T001',sp:'细叶榕',z:'A 区',dbh:85.3,ht:18.5,age:120,hs:92,gps:'22.5431,113.9412'},{id:'T002',sp:'香樟',z:'A 区',dbh:62.1,ht:15.2,age:55,hs:78,gps:'22.5438,113.9428'},{id:'T003',sp:'凤凰木',z:'B 区',dbh:45.2,ht:12.8,age:20,hs:85,gps:'22.5452,113.9435'},{id:'T004',sp:'大王椰子',z:'B 区',dbh:35.1,ht:16.0,age:12,hs:95,gps:'22.5460,113.9442'},{id:'T005',sp:'黄花风铃木',z:'C 区',dbh:28.4,ht:8.2,age:8,hs:88,gps:'22.5475,113.9450'},{id:'T006',sp:'大叶紫薇',z:'C 区',dbh:32.6,ht:9.5,age:15,hs:72,gps:'22.5482,113.9458'},{id:'T007',sp:'秋枫',z:'A 区',dbh:55.8,ht:14.1,age:65,hs:85,gps:'22.5440,113.9418'},{id:'T008',sp:'美丽异木棉',z:'B 区',dbh:38.2,ht:10.5,age:10,hs:90,gps:'22.5458,113.9430'}];
 
-const alerts=[{t:'香樟枯黄异常(3株)',l:'A区红树林步道',lv:'高',tm:'10分钟前',s:'tr'},{t:'榕树蓟马虫害',l:'B区滨海广场',lv:'中',tm:'1小时前',s:'ta'},{t:'湖面漂浮垃圾',l:'湖区·南侧水域',lv:'中',tm:'2小时前',s:'ta'},{t:'草坪斑秃检测',l:'C区运动草坪',lv:'低',tm:'3小时前',s:'tb'}];
-
-const pests=[{id:'P001',type:'榕树蓟马',zone:'B区',date:'07-24',severity:'重度',affected:35,treatment:'吡虫啉1500倍+修剪虫瘿',status:'处置中',by:'陈师傅'},{id:'P002',type:'樟巢螟',zone:'A区',date:'07-22',severity:'中度',affected:18,treatment:'阿维菌素2000倍+摘除虫巢',status:'已处置',by:'刘师傅'},{id:'P003',type:'白粉病',zone:'C区',date:'07-20',severity:'轻度',affected:8,treatment:'三唑酮1000倍+清除病叶',status:'已验收',by:'张师傅'},{id:'P004',type:'天牛幼虫',zone:'A区',date:'07-18',severity:'重度',affected:5,treatment:'敌敌畏注入+钩杀',status:'已处置',by:'陈师傅'},{id:'P005',type:'红火蚁',zone:'C区',date:'07-15',severity:'中度',affected:12,treatment:'饵剂诱杀+灌巢',status:'已验收',by:'刘师傅'}];
-
-const tasks=[{id:'WO-001',type:'病虫害处置',detail:'榕树蓟马·喷施吡虫啉',zone:'B区',priority:'高',worker:'陈师傅',status:'处置中',cost:850},{id:'WO-002',type:'枯木清理',detail:'香樟3株·检查+追肥',zone:'A区',priority:'高',worker:'刘师傅',status:'待派发',cost:1200},{id:'WO-003',type:'湖面清洁',detail:'漂浮垃圾·安排保洁船',zone:'湖区',priority:'中',worker:'张师傅',status:'待派发',cost:300},{id:'WO-004',type:'设施维修',detail:'步道护栏破损·更换',zone:'B区',priority:'中',worker:'王师傅',status:'处置中',cost:560},{id:'WO-005',type:'草坪修复',detail:'斑秃30㎡补种草皮',zone:'C区',priority:'低',worker:'李师傅',status:'待验收',cost:420}];
-
-const trees=[{id:'T001',sp:'细叶榕',zone:'A区',dbh:85.3,height:18.5,age:120,health:92,gps:'22.5431,113.9412'},{id:'T002',sp:'香樟',zone:'A区',dbh:62.1,height:15.2,age:55,health:78,gps:'22.5438,113.9428'},{id:'T003',sp:'凤凰木',zone:'B区',dbh:45.2,height:12.8,age:20,health:85,gps:'22.5452,113.9435'},{id:'T004',sp:'大王椰子',zone:'B区',dbh:35.1,height:16.0,age:12,health:95,gps:'22.5460,113.9442'},{id:'T005',sp:'黄花风铃木',zone:'C区',dbh:28.4,height:8.2,age:8,health:88,gps:'22.5475,113.9450'},{id:'T006',sp:'大叶紫薇',zone:'C区',dbh:32.6,height:9.5,age:15,health:72,gps:'22.5482,113.9458'},{id:'T007',sp:'秋枫',zone:'A区',dbh:55.8,height:14.1,age:65,health:85,gps:'22.5440,113.9418'},{id:'T008',sp:'美丽异木棉',zone:'B区',dbh:38.2,height:10.5,age:10,health:90,gps:'22.5458,113.9430'}];
-
-// ===== LOGIN =====
-function selRole(el,role){currentRole=role;document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('sel'));el.classList.add('sel')}
+function selRole(el,r){currentRole=r;document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('sel'));el.classList.add('sel')}
 function doLogin(){document.getElementById('loginPage').style.display='none';document.getElementById('appMain').classList.add('on');buildSidebar();navTo(routes[currentRole][0])}
 function doLogout(){if(confirm('确定退出？')){document.getElementById('appMain').classList.remove('on');document.getElementById('loginPage').style.display='flex'}}
+function buildSidebar(){let n='';for(let p of routes[currentRole])n+=`<a href="#" class="${p===routes[currentRole][0]?'at':''}" data-p="${p}" onclick="navTo('${p}',this)">${menuNames[p]}</a>`;document.getElementById('sidebarNav').innerHTML=n;document.getElementById('userName').textContent=R[currentRole];document.getElementById('userAvatar').textContent=A[currentRole]}
+function navTo(p,el){if(el){document.querySelectorAll('#sidebarNav a').forEach(a=>a.classList.remove('at'));el.classList.add('at')}document.getElementById('pageTitle').textContent=pageTitles[p];document.getElementById('headerSub').textContent=pageSubs[p];document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));document.getElementById('page-'+p).classList.add('on');document.getElementById('page-'+p).innerHTML=render(p)}
 
-// ===== ROUTES =====
-const routes={admin:['dash','inspect','tasks','trees','gis'],pilot:['dash','inspect'],worker:['dash','tasks'],engineer:['dash','inspect','trees'],leader:['gis','dash']};
-const menuNames={dash:'📊 工作台',inspect:'🛸 AI巡检',tasks:'📋 工单养护',trees:'🌳 苗木档案',gis:'🗺️ GIS大屏'};
-const pageTitles={dash:'📊 工作台',inspect:'🛸 AI巡检',tasks:'📋 工单养护',trees:'🌳 苗木档案',gis:'🗺️ GIS大屏'};
-const pageSubs={dash:'今日全园关键指标与待处理事项',inspect:'无人机巡检任务与AI识别结果',tasks:'工单派发·处置·验收闭环',trees:'1247棵乔木数字化档案',gis:'全园态势一屏总览'};
+function render(p){
+  if(p==='dash')return `<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">${P.trees.toLocaleString()}</div><div class="l">在管乔木 · 棵</div></div><div class="stat"><div class="n" style="color:var(--red)">${alerts.length}</div><div class="l">今日实时告警</div></div><div class="stat"><div class="n" style="color:var(--b)">${tasks.filter(t=>t.st!=='已验收').length}</div><div class="l">进行中工单</div></div><div class="stat"><div class="n" style="color:var(--tel)">${P.coverage}%</div><div class="l">绿地覆盖率</div></div></div>
+<div class="grid2"><div class="card"><h3>📋 待处理告警</h3>${alerts.map(a=>`<div class="alert-row"><div class="al-dot" style="background:${a.s==='tr'?'#dc2626':a.s==='ta'?'#d97706':'#3b82f6'}"></div><div style="flex:1"><strong style="font-size:11.5px">${a.t}</strong><br><span style="font-size:10px;color:var(--g)">${a.l} · ${a.tm}</span></div><span class="tag ${a.s}">${a.lv}</span></div>`).join('')}</div>
+<div class="card"><h3>🛸 今日巡检进度</h3>${[{n:'A 区 · 红树林',p:90,c:'g'},{n:'B 区 · 滨海步道',p:65,c:'b'},{n:'C 区 · 运动公园',p:40,c:'a'},{n:'湖区 · 内湖',p:20,c:'a'}].map(x=>`<div class="bar"><span style="font-size:10.5px;min-width:100px;color:var(--s2)">${x.n}</span><div class="trk"><div class="fl ${x.c}" style="width:${x.p}%"></div></div><span style="font-size:9px;color:var(--g)">${x.p}%</span></div>`).join('')}</div></div>
+<div class="card"><h3>📊 本月病虫害趋势</h3><table><tr><th>病虫害</th><th>本月发现</th><th>上月</th><th>趋势</th><th>集中区域</th></tr><tr><td>榕树蓟马</td><td>23 处</td><td>15 处</td><td><span class="tag tr">↑ 53%</span></td><td>B 区滨海广场</td></tr><tr><td>樟巢螟</td><td>12 处</td><td>8 处</td><td><span class="tag ta">↑ 50%</span></td><td>A 区红树林步道</td></tr><tr><td>白粉病</td><td>6 处</td><td>11 处</td><td><span class="tag tg">↓ 45%</span></td><td>C 区运动草坪</td></tr></table></div>`;
 
-function buildSidebar(){
-  let nav='';const r=routes[currentRole];
-  for(let p of r)nav+=`<a href="#" class="${p===r[0]?'at':''}" data-p="${p}" onclick="navTo('${p}',this)">${menuNames[p]}</a>`;
-  document.getElementById('sidebarNav').innerHTML=nav;
-  document.getElementById('userName').textContent=roleNames[currentRole];
-  document.getElementById('userAvatar').textContent=roleAvatars[currentRole];
+if(p==='inspect')return `<div class="tabs"><div class="tab at" onclick="st(this,'ins-list')">识别记录</div><div class="tab" onclick="st(this,'ins-drone')">飞行任务</div><div class="tab" onclick="st(this,'ins-upload')">航拍上传</div></div>
+<div class="tab-body on" id="ins-list"><div class="card"><table><tr><th>ID</th><th>类型</th><th>区域</th><th>日期</th><th>严重度</th><th>影响</th><th>处置方案</th><th>状态</th></tr>${pests.map(p=>`<tr><td>${p.id}</td><td>${p.t}</td><td>${p.z}</td><td>${p.d}</td><td><span class="tag ${p.sv==='重度'?'tr':p.sv==='中度'?'ta':'tb'}">${p.sv}</span></td><td>${p.n} 株</td><td style="font-size:10px">${p.tr}</td><td><span class="tag ${p.st==='已验收'?'tg':p.st==='已处置'?'tb':'ta'}">${p.st}</span></td></tr>`).join('')}</table></div></div>
+<div class="tab-body" id="ins-drone"><div class="card"><table><tr><th>任务</th><th>区域</th><th>飞手</th><th>状态</th></tr><tr><td>A 区红树林常规巡检</td><td>A 区</td><td>张建国</td><td><span class="tag tb">飞行中</span></td></tr><tr><td>B 区滨海步道巡检</td><td>B 区</td><td>李明辉</td><td><span class="tag tg">已完成</span></td></tr><tr><td>C 区运动公园巡检</td><td>C 区</td><td>王伟强</td><td><span class="tag ta">待起飞</span></td></tr></table></div></div>
+<div class="tab-body" id="ins-upload"><div class="drone-box" onclick="this.innerHTML='<div class=\\'card\\' style=\\'background:#ecfdf5;border:2px solid #6ee7b7\\'>'+'<h3 style=\\'color:#065f46\\'>✅ AI 识别完成</h3>'+'<table style=\\'margin-top:8px\\'><tr><th>检测项</th><th>结果</th><th>置信度</th></tr>'+'<tr><td>枯死 / 枯黄</td><td>A 区香樟 3 株异常</td><td><span class=\\'tag tg\\'>94.2%</span></td></tr>'+'<tr><td>虫害识别</td><td>榕树蓟马 (B 区)</td><td><span class=\\'tag tg\\'>87.5%</span></td></tr>'+'<tr><td>湖面垃圾</td><td>湖区南侧 2 处</td><td><span class=\\'tag ta\\'>83.1%</span></td></tr>'+'<tr><td>黄土裸露</td><td>C 区草坪 30 ㎡</td><td><span class=\\'tag tg\\'>91.0%</span></td></tr></table>'+'<div style=\\'margin-top:10px\\'><button class=\\'btn bg bs\\' onclick=\\'event.stopPropagation()\\'>生成工单</button> <button class=\\'btn bo bs\\' onclick=\\'event.stopPropagation()\\'>重新上传</button></div></div>'"><div style="font-size:42px;margin-bottom:8px">📸</div><p style="font-size:13px;font-weight:500;color:var(--s2)">点击上传无人机航拍图片</p><p style="font-size:10px;color:var(--g);margin-top:4px">支持 JPG / PNG / TIFF，最大 50MB</p></div></div>`;
+
+if(p==='tasks')return `<div class="tabs"><div class="tab at" onclick="st(this,'task-all')">全部工单</div><div class="tab" onclick="st(this,'task-pending')">${currentRole==='worker'?'我的工单':'待处理'}</div></div>
+<div class="tab-body on" id="task-all"><div class="card"><table><tr><th>工单</th><th>类型</th><th>详情</th><th>区域</th><th>优先级</th><th>工人</th><th>费用</th><th>状态</th><th>操作</th></tr>${tasks.map(t=>`<tr><td style="font-family:monospace;font-size:10px">${t.id}</td><td>${t.tp}</td><td style="font-size:10px">${t.d}</td><td>${t.z}</td><td><span class="tag ${t.pr==='高'?'tr':t.pr==='中'?'ta':'tb'}">${t.pr}</span></td><td>${t.w}</td><td style="font-family:monospace">¥${t.c}</td><td><span class="tag ${t.st==='已验收'?'tg':t.st==='已处置'?'tb':t.st==='处置中'?'ta':'tr'}">${t.st}</span></td><td>${currentRole==='admin'&&t.st==='待派发'?'<button class="btn bp bs">派单</button>':currentRole==='worker'&&t.st==='处置中'?'<button class="btn bg bs">完成</button>':'-'}</td></tr>`).join('')}</table></div></div>
+<div class="tab-body" id="task-pending"><div class="card"><table><tr><th>工单</th><th>类型</th><th>区域</th><th>优先级</th><th>费用</th><th>状态</th><th>操作</th></tr>${tasks.filter(t=>t.st!=='已验收').slice(0,3).map(t=>`<tr><td style="font-family:monospace;font-size:10px">${t.id}</td><td>${t.tp}</td><td>${t.z}</td><td><span class="tag ${t.pr==='高'?'tr':'ta'}">${t.pr}</span></td><td>¥${t.c}</td><td><span class="tag ${t.st==='处置中'?'ta':'tr'}">${t.st}</span></td><td>${currentRole==='worker'?'<button class="btn bg bs">处置</button>':'<button class="btn bp bs">派单</button>'}</td></tr>`).join('')}</table></div></div>`;
+
+if(p==='trees')return `<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">${P.trees.toLocaleString()}</div><div class="l">乔木总数</div></div><div class="stat"><div class="n" style="color:var(--b)">20</div><div class="l">树种</div></div><div class="stat"><div class="n" style="color:var(--tel)">82</div><div class="l">平均健康评分</div></div><div class="stat"><div class="n" style="color:var(--amb)">3</div><div class="l">古树名木</div></div></div>
+<div class="map-box">🌳 深圳湾公园 · 1,247 棵乔木 GIS 分布图<br><span style="font-size:13px;color:var(--g);font-weight:400;margin-top:6px">4 个区域标注 · GPS 坐标绑定 · 点击树图标查看档案</span></div>
+<div class="card" style="margin-top:16px"><h3>📋 苗木档案（抽样 8 棵 / 共 1,247 棵）</h3><table><tr><th>编号</th><th>树种</th><th>区域</th><th>胸径</th><th>树高</th><th>树龄</th><th>健康</th><th>GPS</th></tr>${trees.map(t=>`<tr><td style="font-family:monospace">${t.id}</td><td>${t.sp}</td><td>${t.z}</td><td>${t.dbh} cm</td><td>${t.ht} m</td><td>${t.age} 年</td><td><span class="tag ${t.hs>=85?'tg':t.hs>=70?'ta':'tr'}">${t.hs} 分</span></td><td style="font-family:monospace;font-size:10px">${t.gps}</td></tr>`).join('')}</table></div>`;
+
+if(p==='gis')return `<div class="map-box" style="height:480px">🗺️ 深圳湾公园 · GIS 态势大屏<br><span style="font-size:14px;color:var(--g);font-weight:400;margin-top:6px">108 公顷 · 13 公里海岸线 · 4 区实时监控</span></div>
+<div class="grid3" style="margin-top:16px"><div class="stat"><div class="n" style="color:var(--grn)">${P.trees.toLocaleString()}</div><div class="l">乔木已建档</div></div><div class="stat"><div class="n" style="color:var(--red)">${alerts.length}</div><div class="l">实时告警</div></div><div class="stat"><div class="n" style="color:var(--b)">${Math.round(P.ha*P.coverage/100)} ha</div><div class="l">绿地面积</div></div></div>
+<div class="card" style="margin-top:16px"><h3>🏛️ 古树名木专项档案</h3><table><tr><th>编号</th><th>树种</th><th>树龄</th><th>位置</th><th>健康</th><th>上次巡检</th></tr><tr><td>AG-001</td><td>细叶榕</td><td>120 年</td><td>A 区古榕广场</td><td><span class="tag tg">92 分</span></td><td>2026-07-20</td></tr><tr><td>AG-002</td><td>秋枫</td><td>65 年</td><td>A 区红树林道</td><td><span class="tag tg">85 分</span></td><td>2026-07-18</td></tr><tr><td>AG-003</td><td>香樟</td><td>80 年</td><td>B 区滨海广场</td><td><span class="tag ta">78 分</span></td><td>2026-07-15</td></tr></table></div>`;
 }
 
-function navTo(page,el){
-  if(el){document.querySelectorAll('#sidebarNav a').forEach(a=>a.classList.remove('at'));el.classList.add('at')}
-  document.getElementById('pageTitle').textContent=pageTitles[page];
-  document.getElementById('headerSub').textContent=pageSubs[page];
-  document.getElementById('pageContent').innerHTML=renderPage(page);
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('at'));
-  document.querySelectorAll('.tab-body').forEach(b=>b.classList.remove('on'));
-}
+function st(el,id){const p=el.closest('.page');p.querySelectorAll('.tab').forEach(t=>t.classList.remove('at'));el.classList.add('at');p.querySelectorAll('.tab-body').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on')}
 
-// ===== PAGE RENDERERS =====
-function renderPage(page){
-  if(page==='dash')return renderDash();
-  if(page==='inspect')return renderInspect();
-  if(page==='tasks')return renderTasks();
-  if(page==='trees')return renderTrees();
-  if(page==='gis')return renderGis();
-}
-
-function renderDash(){
-  let ahtml='';for(let a of alerts)ahtml+=`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--brd)"><div style="flex:1"><strong style="font-size:11px">${a.t}</strong><br><span style="font-size:10px;color:var(--g)">${a.l} · ${a.tm}</span></div><span class="tag ${a.s}">${a.lv}</span></div>`;
-  return `<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">${parkData.trees}</div><div class="l">在管乔木(棵)</div></div><div class="stat"><div class="n" style="color:var(--red)">${alerts.length}</div><div class="l">今日告警</div></div><div class="stat"><div class="n" style="color:var(--b)">${tasks.filter(t=>t.status!=='已验收').length}</div><div class="l">进行中工单</div></div><div class="stat"><div class="n" style="color:var(--tel)">${parkData.greenCoverage}%</div><div class="l">绿地覆盖率</div></div></div>
-<div class="grid2"><div class="card"><h3>📋 待处理告警</h3><div style="margin-top:8px">${ahtml}</div></div><div class="card"><h3>🛸 今日巡检</h3><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">A区</span><div class="trk"><div class="fl" style="width:90%"></div></div><span style="font-size:9px;color:var(--g)">90%</span></div><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">B区</span><div class="trk"><div class="fl" style="width:65%"></div></div><span style="font-size:9px;color:var(--g)">65%</span></div><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">C区</span><div class="trk"><div class="fl" style="width:40%"></div></div><span style="font-size:9px;color:var(--g)">40%</span></div><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">湖区</span><div class="trk"><div class="fl" style="width:20%"></div></div><span style="font-size:9px;color:var(--g)">20%</span></div></div></div>
-<div class="card"><h3>📊 本月病虫害趋势</h3><table><tr><th>病虫害</th><th>本月</th><th>上月</th><th>趋势</th><th>主要区域</th></tr><tr><td>榕树蓟马</td><td>23处</td><td>15处</td><td><span class="tag tr">↑53%</span></td><td>B区滨海广场</td></tr><tr><td>樟巢螟</td><td>12处</td><td>8处</td><td><span class="tag ta">↑50%</span></td><td>A区红树林步道</td></tr><tr><td>白粉病</td><td>6处</td><td>11处</td><td><span class="tag tg">↓45%</span></td><td>C区运动草坪</td></tr></table></div>`;
-}
-
-function renderInspect(){
-  let ihtml='';for(let p of pests)ihtml+=`<tr><td>${p.id}</td><td>${p.type}</td><td>${p.zone}</td><td>${p.date}</td><td><span class="tag ${p.severity==='重度'?'tr':p.severity==='中度'?'ta':'tb'}">${p.severity}</span></td><td>${p.affected}株</td><td>${p.treatment}</td><td><span class="tag ${p.status==='已验收'?'tg':p.status==='已处置'?'tb':'ta'}">${p.status}</span></td><td>${p.by||'-'}</td></tr>`;
-  return `<div class="tabs"><div class="tab at" onclick="switchTab(this,'ins-list')">📋 识别记录</div><div class="tab" onclick="switchTab(this,'ins-drone')">🛸 飞行任务</div><div class="tab" onclick="switchTab(this,'ins-upload')">📸 航拍上传</div></div>
-<div class="tab-body on" id="ins-list"><table><tr><th>ID</th><th>类型</th><th>区域</th><th>发现日期</th><th>严重度</th><th>影响</th><th>处置方案</th><th>状态</th><th>处置人</th></tr>${ihtml}</table></div>
-<div class="tab-body" id="ins-drone"><div class="card"><h3>📋 今日飞行任务</h3><table><tr><th>任务</th><th>区域</th><th>飞手</th><th>状态</th><th>进度</th></tr><tr><td>A区红树林常规巡检</td><td>A区</td><td>张建国</td><td><span class="tag tb">飞行中</span></td><td><div class="bar"><div class="trk"><div class="fl" style="width:90%"></div></div></div></td></tr><tr><td>B区滨海步道巡检</td><td>B区</td><td>李明辉</td><td><span class="tag tg">已完成</span></td><td>100%</td></tr><tr><td>C区运动公园巡检</td><td>C区</td><td>王伟强</td><td><span class="tag ta">待起飞</span></td><td>0%</td></tr></table></div></div>
-<div class="tab-body" id="ins-upload"><div class="drone-box" onclick="this.innerHTML='<div class=\\'card\\' style=\\'background:#f0fdf4;border-color:var(--grn)\\'>'+'<h3 style=\\'color:var(--grn)\\'>✅ AI识别完成</h3>'+'<table style=\\'margin-top:8px\\'><tr><th>检测项</th><th>结果</th><th>置信度</th></tr>'+'<tr><td>枯死/枯黄</td><td>A区香樟3株异常</td><td>94.2%</td></tr>'+'<tr><td>虫害识别</td><td>榕树蓟马(B区)</td><td>87.5%</td></tr>'+'<tr><td>湖面垃圾</td><td>湖区南侧2处</td><td>83.1%</td></tr>'+'<tr><td>黄土裸露</td><td>C区草坪·30㎡</td><td>91.0%</td></tr></table>'+'<div style=\\'margin-top:10px\\'><button class=\\'btn bg bs\\' onclick=\\'event.stopPropagation()\\'>生成工单</button> <button class=\\'btn bo bs\\' onclick=\\'event.stopPropagation()\\'>重新上传</button></div></div>'"><div style="font-size:36px">📸</div><p style="color:var(--g);font-size:12px">点击上传无人机航拍图片（模拟）</p></div></div>`;
-}
-
-function renderTasks(){
-  let thtml='';for(let t of tasks)thtml+=`<tr><td>${t.id}</td><td>${t.detail.split('·')[0]}</td><td>${t.zone}</td><td><span class="tag ${t.priority==='高'?'tr':t.priority==='中'?'ta':'tb'}">${t.priority}</span></td><td>${t.worker||'-'}</td><td>¥${t.cost}</td><td><span class="tag ${t.status==='已验收'?'tg':t.status==='已处置'?'tb':t.status==='处置中'?'ta':'tr'}">${t.status}</span></td><td>${currentRole==='admin'&&t.status==='待派发'?'<button class="btn bp bs">派单</button>':currentRole==='worker'&&t.status==='处置中'?'<button class="btn bg bs">完成处置</button>':'-'}</td></tr>`;
-  return `<div class="tabs"><div class="tab at" onclick="switchTab(this,'task-all')">全部工单</div><div class="tab" onclick="switchTab(this,'task-my')">${currentRole==='worker'?'我的工单':'待处理'}</div></div>
-<div class="tab-body on" id="task-all"><table><tr><th>工单</th><th>类型</th><th>区域</th><th>优先级</th><th>工人</th><th>费用</th><th>状态</th><th>操作</th></tr>${thtml}</table></div>
-<div class="tab-body" id="task-my"><table><tr><th>工单</th><th>类型</th><th>区域</th><th>优先级</th><th>费用</th><th>状态</th><th>操作</th></tr>${tasks.filter(t=>t.status!=='已验收').slice(0,3).map(t=>`<tr><td>${t.id}</td><td>${t.detail.split('·')[0]}</td><td>${t.zone}</td><td><span class="tag ${t.priority==='高'?'tr':t.priority==='中'?'ta':'tb'}">${t.priority}</span></td><td>¥${t.cost}</td><td><span class="tag ${t.status==='处置中'?'ta':'tr'}">${t.status}</span></td><td>${currentRole==='worker'?'<button class="btn bg bs">处置</button>':'<button class="btn bp bs">派单</button>'}</td></tr>`).join('')}</table></div>`;
-}
-
-function renderTrees(){
-  let thtml='';for(let t of trees)thtml+=`<tr><td>${t.id}</td><td>${t.sp}</td><td>${t.zone}</td><td>${t.dbh}cm</td><td>${t.height}m</td><td>${t.age}年</td><td><span class="tag ${t.health>=85?'tg':t.health>=70?'ta':'tr'}">${t.health}分</span></td><td>${t.gps}</td></tr>`;
-  return `<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">${parkData.trees}</div><div class="l">乔木总数</div></div><div class="stat"><div class="n" style="color:var(--b)">20</div><div class="l">树种</div></div><div class="stat"><div class="n" style="color:var(--tel)">82</div><div class="l">平均健康分</div></div><div class="stat"><div class="n" style="color:var(--amb)">3</div><div class="l">古树名木</div></div></div>
-<div class="map-box">🌳 深圳湾公园 · 1247棵乔木GIS分布图 · 4个区域标注</div>
-<div class="card" style="margin-top:14px"><h3>📋 苗木档案（抽样8棵/共1247棵）</h3><table><tr><th>编号</th><th>树种</th><th>区域</th><th>胸径</th><th>树高</th><th>树龄</th><th>健康</th><th>GPS</th></tr>${thtml}</table></div>`;
-}
-
-function renderGis(){
-  return `<div class="map-box" style="height:500px">🗺️ 深圳湾公园 · GIS态势大屏<br><span style="font-size:14px;color:var(--g);font-weight:400;margin-top:8px">108公顷 · 13公里海岸线 · 4区 · 1247棵乔木</span></div>
-<div class="grid3" style="margin-top:14px"><div class="stat"><div class="n" style="color:var(--grn)">${parkData.trees}</div><div class="l">乔木已建档</div></div><div class="stat"><div class="n" style="color:var(--red)">${alerts.length}</div><div class="l">实时告警</div></div><div class="stat"><div class="n" style="color:var(--b)">${Math.round(parkData.areaHa*parkData.greenCoverage/100)}ha</div><div class="l">绿地面积</div></div></div>
-<div class="card"><h3>🏛️ 古树名木专项</h3><table><tr><th>编号</th><th>树种</th><th>树龄</th><th>位置</th><th>健康</th></tr><tr><td>AG-001</td><td>细叶榕</td><td>120年</td><td>A区古榕广场</td><td><span class="tag tg">92分</span></td></tr><tr><td>AG-002</td><td>秋枫</td><td>65年</td><td>A区红树林道</td><td><span class="tag tg">85分</span></td></tr><tr><td>AG-003</td><td>香樟</td><td>80年</td><td>B区滨海广场</td><td><span class="tag ta">78分</span></td></tr></table></div>`;
-}
-
-// ===== TAB SWITCH =====
-function switchTab(el,id){const p=el.parentElement.parentElement;p.querySelectorAll('.tab').forEach(t=>t.classList.remove('at'));el.classList.add('at');p.querySelectorAll('.tab-body').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on')}
-
-// ===== INIT =====
 buildSidebar();navTo(routes.admin[0]);
 </script>
 </body>
