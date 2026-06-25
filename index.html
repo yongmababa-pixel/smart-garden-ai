@@ -1,278 +1,222 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Smart Garden AI — 智慧园林AI平台</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Smart Garden AI — 智慧园林AI平台 v2.0</title>
 <style>
-:root{--blue:#2563eb;--blue2:#1d4ed8;--dark:#0f172a;--d2:#1e293b;--gray:#64748b;--light:#f8fafc;--white:#fff;--green:#059669;--amber:#d97706;--red:#dc2626;--border:#e2e8f0;--teal:#0d9488;--font:system-ui,-apple-system,sans-serif}
+:root{--blue:#2563eb;--b2:#1d4ed8;--dark:#0f172a;--d2:#1e293b;--gray:#64748b;--light:#f8fafc;--w:#fff;--green:#059669;--amber:#d97706;--red:#dc2626;--teal:#0d9488;--purple:#7c3aed;--border:#e2e8f0;--font:system-ui,-apple-system,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--font);color:var(--d2);background:var(--white);overflow-x:hidden}
-h2{font-size:30px;font-weight:800;color:var(--dark);text-align:center;margin-bottom:8px}
-h3{font-size:18px;font-weight:700;margin:8px 0}
-.section-sub{text-align:center;color:var(--gray);font-size:15px;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
-section{padding:80px 20px;max-width:1200px;margin:0 auto}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .3s;background:transparent}
-nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-nav .logo{font-size:20px;font-weight:800;color:var(--white);display:flex;align-items:center;gap:8px}
-nav.scrolled .logo{color:var(--dark)}
-nav .logo span{color:var(--green)}
-nav .links{display:flex;gap:28px;list-style:none}
-nav .links a{text-decoration:none;color:rgba(255,255,255,.85);font-size:14px;font-weight:500;transition:color .2s}
-nav.scrolled .links a{color:var(--gray)}
-nav .links a:hover{color:var(--green)}
-nav .btn-nav{padding:8px 20px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
-nav .btn-nav:hover{background:#047857}
-
-/* HERO */
-.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 40%,#2563eb 100%);padding:140px 20px 100px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.3),transparent 70%);border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(5,150,105,.2),transparent 70%);border-radius:50%}
-.hero h1{font-size:48px;font-weight:900;color:#fff;max-width:800px;margin:0 auto 16px;position:relative;z-index:1;line-height:1.2}
-.hero h1 span{color:#34d399}
-.hero p{font-size:17px;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto 32px;position:relative;z-index:1;line-height:1.6}
-.hero .hero-btns{display:flex;gap:14px;justify-content:center;position:relative;z-index:1}
-.hero .btn-p{padding:14px 32px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none}
-.hero .btn-p:hover{background:#047857;transform:translateY(-2px)}
-.hero .btn-o{padding:14px 32px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none}
-.hero .btn-o:hover{border-color:#fff;transform:translateY(-2px)}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:-60px;position:relative;z-index:2}
-.stats .stat{background:#fff;border-radius:16px;padding:28px 20px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.08);transition:all .3s}
-.stats .stat:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
-.stats .num{font-size:36px;font-weight:900;color:var(--blue);margin-bottom:4px}
-.stats .lab{font-size:13px;color:var(--gray)}
-
-/* MODULES */
-.modules{background:var(--light)}
-.modules .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.modules .card{background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .3s;border:1px solid var(--border);cursor:pointer}
-.modules .card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.08);border-color:var(--green)}
-.modules .card .icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
-.modules .card .icon.blue{background:#dbeafe;color:var(--blue)}
-.modules .card .icon.green{background:#d1fae5;color:var(--green)}
-.modules .card .icon.amber{background:#fef3c7;color:var(--amber)}
-.modules .card .icon.purple{background:#ede9fe;color:#7c3aed}
-.modules .card .icon.teal{background:#ccfbf1;color:var(--teal)}
-.modules .card .icon.red{background:#fee2e2;color:var(--red)}
-.modules .card p{font-size:13px;color:var(--gray);line-height:1.6;margin-top:8px}
-.modules .card .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.modules .card .tag{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
-.modules .card .tag.green{background:#d1fae5;color:var(--green)}
-.modules .card .tag.blue{background:#dbeafe;color:var(--blue)}
-.modules .card .tag.amber{background:#fef3c7;color:var(--amber)}
-
-/* AI TABLE */
-.ai-section{background:#fff}
-.ai-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:20px;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.ai-table th{background:var(--dark);color:#fff;padding:12px 16px;text-align:left;font-weight:600}
-.ai-table td{padding:11px 16px;border-bottom:1px solid var(--border)}
-.ai-table tr:nth-child(even){background:var(--light)}
-.ai-table .p0{color:var(--red);font-weight:700}
-.ai-table .p1{color:var(--amber);font-weight:700}
-.ai-table .p2{color:var(--gray);font-weight:700}
-
-/* ROADMAP */
-.roadmap{background:var(--light)}
-.roadmap .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.roadmap .phase{background:#fff;border-radius:16px;padding:28px 24px;border-left:4px solid var(--blue);box-shadow:0 2px 12px rgba(0,0,0,.04)}
-.roadmap .phase:nth-child(2){border-left-color:var(--teal)}
-.roadmap .phase:nth-child(3){border-left-color:var(--green)}
-.roadmap .phase .time{font-size:12px;color:var(--gray);font-weight:600;margin-bottom:8px}
-.roadmap .phase h3{font-size:16px}
-.roadmap .phase p{font-size:13px;color:var(--gray);line-height:1.6}
-
-/* METRICS */
-.metrics{background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;text-align:center}
-.metrics h2{color:#fff}
-.metrics .section-sub{color:rgba(255,255,255,.7)}
-.metrics .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.metrics .item{text-align:center}
-.metrics .item .big{font-size:42px;font-weight:900;color:#34d399;margin-bottom:4px}
-.metrics .item .label{font-size:13px;color:rgba(255,255,255,.7)}
-
-/* LAYERS */
-.layers{background:#fff}
-.layers .layer-row{display:flex;align-items:center;gap:16px;padding:20px 24px;background:var(--light);border-radius:12px;margin-bottom:12px;border-left:4px solid var(--blue);transition:all .2s}
-.layers .layer-row:hover{transform:translateX(4px)}
-.layers .layer-row:nth-child(1){border-left-color:var(--green)}
-.layers .layer-row:nth-child(2){border-left-color:var(--blue)}
-.layers .layer-row:nth-child(3){border-left-color:#7c3aed}
-.layers .layer-row:nth-child(4){border-left-color:var(--amber)}
-.layers .layer-row:nth-child(5){border-left-color:var(--red)}
-.layers .layer-row .lname{font-weight:700;min-width:100px;font-size:15px}
-.layers .layer-row .ldesc{color:var(--gray);font-size:13px;line-height:1.5}
-.layers .layer-row .ltags{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
-.layers .layer-row .ltags span{padding:3px 10px;background:#fff;border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--gray)}
-
-/* FOOTER */
-footer{background:var(--dark);color:rgba(255,255,255,.6);padding:40px 20px;text-align:center;font-size:13px}
-footer a{color:var(--green);text-decoration:none}
-
-@media(max-width:768px){
-  nav{padding:12px 16px}
-  nav .links{display:none}
-  .hero h1{font-size:28px}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .modules .grid{grid-template-columns:1fr}
-  .roadmap .phases{grid-template-columns:1fr}
-  .metrics .grid{grid-template-columns:repeat(2,1fr)}
-}
+body{font-family:var(--font);color:var(--d2);background:var(--w);overflow-x:hidden}
+.app{display:flex;height:100vh}
+.sidebar{width:240px;background:var(--dark);color:#fff;display:flex;flex-direction:column;flex-shrink:0}
+.sidebar .logo{padding:20px;font-size:18px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:8px}
+.sidebar .logo span{color:#34d399}
+.sidebar nav{flex:1;padding:12px}
+.sidebar nav a{display:flex;align-items:center;gap:10px;padding:10px 14px;color:rgba(255,255,255,.6);text-decoration:none;border-radius:8px;font-size:13px;margin-bottom:2px;transition:all .2s}
+.sidebar nav a:hover,.sidebar nav a.active{background:rgba(255,255,255,.1);color:#fff}
+.sidebar nav a .ico{font-size:16px;width:20px;text-align:center}
+.main{flex:1;overflow-y:auto;background:var(--light)}
+header{padding:16px 28px;background:var(--w);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:18px;font-weight:700}
+.page{padding:24px 28px;max-width:1400px;display:none}
+.page.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:16px 0}
+.card{background:var(--w);border-radius:12px;padding:20px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04);transition:all .2s}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.card h3{font-size:15px;margin-bottom:8px;color:var(--d2)}
+.card p{font-size:12px;color:var(--gray);line-height:1.6}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat{background:var(--w);border-radius:12px;padding:20px;border:1px solid var(--border);text-align:center}
+.stat .n{font-size:32px;font-weight:900;color:var(--blue)}
+.stat .l{font-size:11px;color:var(--gray);margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--w);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+th{background:var(--dark);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:11px}
+td{padding:9px 14px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}tr:nth-child(even){background:var(--light)}
+.tag{padding:2px 8px;border-radius:12px;font-size:10px;font-weight:600}
+.tg{background:#d1fae5;color:var(--green)}.tb{background:#dbeafe;color:var(--blue)}.ta{background:#fef3c7;color:var(--amber)}.tr{background:#fee2e2;color:var(--red)}.tp{background:#ede9fe;color:var(--purple)}
+.bar{display:flex;align-items:center;gap:8px;margin:8px 0}
+.bar .fill{height:6px;border-radius:3px;background:var(--green)}.bar .track{flex:1;background:#e2e8f0;border-radius:3px;height:6px;overflow:hidden}
+input,select,textarea{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:var(--font);margin:4px 0;background:var(--w)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue)}
+button{padding:8px 16px;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--b2)}
+.btn-g{background:var(--green);color:#fff}.btn-g:hover{background:#047857}
+.btn-o{border:1px solid var(--border);background:var(--w);color:var(--d2)}.btn-o:hover{border-color:var(--blue)}
+.btn-sm{padding:4px 10px;font-size:10px}
+.tabs{display:flex;gap:4px;margin-bottom:16px;border-bottom:2px solid var(--border)}
+.tab{padding:8px 16px;font-size:12px;cursor:pointer;color:var(--gray);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+.tab-body{display:none}.tab-body.active{display:block}
+.grid2{display:grid;grid-template-columns:300px 1fr;gap:16px}
+.map-placeholder{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:24px;border:2px dashed var(--blue)}
+.search-box{display:flex;gap:8px;margin-bottom:16px}.search-box input{flex:1}
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.active{display:flex}
+.modal{background:var(--w);border-radius:16px;padding:24px;width:500px;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+@media(max-width:768px){.sidebar{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 
-<nav id="nav">
-<div class="logo">🌿 Smart<span>Garden</span> AI</div>
-<ul class="links">
-<li><a href="#modules">功能模块</a></li>
-<li><a href="#ai">AI识别</a></li>
-<li><a href="#roadmap">路线图</a></li>
-<li><a href="#metrics">指标</a></li>
-</ul>
-<button class="btn-nav">免费试用</button>
+<div class="app">
+<div class="sidebar">
+<div class="logo">🌿 Smart<span>Garden</span></div>
+<nav>
+<a href="#" class="active" data-page="dashboard" onclick="nav(this,'dashboard')"><span class="ico">📊</span>工作台</a>
+<a href="#" data-page="kb" onclick="nav(this,'kb')"><span class="ico">📚</span>知识库</a>
+<a href="#" data-page="ai" onclick="nav(this,'ai')"><span class="ico">🔍</span>AI识别</a>
+<a href="#" data-page="drones" onclick="nav(this,'drones')"><span class="ico">🛸</span>无人机巡检</a>
+<a href="#" data-page="tasks" onclick="nav(this,'tasks')"><span class="ico">📋</span>工单管理</a>
+<a href="#" data-page="gis" onclick="nav(this,'gis')"><span class="ico">🗺️</span>GIS大屏</a>
 </nav>
-
-<section class="hero">
-<h1>用 AI 守护每一片<span>绿地</span></h1>
-<p>面向市政园林管理的综合 AI 解决方案。从病虫害识别到无人机巡检调度，从知识库到数字孪生，让园林养护更智能、更高效。</p>
-<div class="hero-btns">
-<a href="#modules" class="btn-p">探索功能模块</a>
-<a href="https://github.com/yongmababa-pixel/smart-garden" class="btn-o">GitHub 开源</a>
-</div>
-</section>
-
-<section>
-<div class="stats">
-<div class="stat"><div class="num">100+</div><div class="lab">覆盖苗木种类</div></div>
-<div class="stat"><div class="num">50+</div><div class="lab">病虫害识别类型</div></div>
-<div class="stat"><div class="num">90%</div><div class="lab">AI 识别召回率</div></div>
-<div class="stat"><div class="num">50ha</div><div class="lab">单架次巡检覆盖</div></div>
-</div>
-</section>
-
-<section class="modules" id="modules">
-<h2>六大核心模块</h2>
-<p class="section-sub">覆盖园林管理全链路——从知识查询到智能决策</p>
-<div class="grid">
-
-<div class="card">
-<div class="icon green">📚</div>
-<h3>智慧园林知识库</h3>
-<p>苗木百科、病虫害图鉴、养护标准库、AI 智能问答。基于 RAG 架构，覆盖深圳常见园林苗木 100+ 种。</p>
-<div class="tag-row"><span class="tag green">RAG</span><span class="tag green">向量检索</span><span class="tag green">知识图谱</span></div>
 </div>
 
-<div class="card">
-<div class="icon blue">🔍</div>
-<h3>AI 视觉识别</h3>
-<p>无人机/地面相机挂载，自动识别病虫害、枯死、倾斜等 8 类异常。云端+边缘双层推理，每项独立交付验收指标。</p>
-<div class="tag-row"><span class="tag blue">目标检测</span><span class="tag blue">分类模型</span><span class="tag blue">边缘推理</span></div>
+<div class="main">
+<header><h1 id="pageTitle">📊 工作台</h1></header>
+
+<!-- DASHBOARD -->
+<div class="page active" id="page-dashboard">
+<div class="stats"><div class="stat"><div class="n" style="color:var(--green)">127</div><div class="l">在管苗木种类</div></div><div class="stat"><div class="n" style="color:var(--red)">8</div><div class="l">今日新增告警</div></div><div class="stat"><div class="n" style="color:var(--blue)">23</div><div class="l">进行中工单</div></div><div class="stat"><div class="n" style="color:var(--teal)">94.2%</div><div class="l">AI识别准确率</div></div></div>
+<div class="grid2">
+<div>
+<div class="card"><h3>📋 待处理告警</h3>
+<div style="margin-top:12px">${[{t:'香樟枯黄异常',loc:'深圳湾公园A区',lvl:'高',time:'10分钟前',st:'tr'},{t:'榕树蓟马虫害',loc:'莲花山公园南门',lvl:'中',time:'1小时前',st:'ta'},{t:'草坪斑秃检测',loc:'人才公园西侧',lvl:'低',time:'3小时前',st:'tb'}].map(x=>'<div class="bar" style="margin:10px 0"><div style="flex:1"><strong style="font-size:12px">'+x.t+'</strong><br><span style="font-size:10px;color:var(--gray)">'+x.loc+' · '+x.time+'</span></div><span class="tag '+x.st+'">'+x.lvl+'</span></div>').join('')}</div></div></div>
+<div>
+<div class="card"><h3>🛸 今日巡检进度</h3><div style="margin:12px 0"><div class="bar"><span style="font-size:11px;min-width:70px">深圳湾公园</span><div class="track"><div class="fill" style="width:85%"></div></div><span style="font-size:10px;color:var(--gray)">85%</span></div><div class="bar"><span style="font-size:11px;min-width:70px">莲花山公园</span><div class="track"><div class="fill" style="width:60%"></div></div><span style="font-size:10px;color:var(--gray)">60%</span></div><div class="bar"><span style="font-size:11px;min-width:70px">人才公园</span><div class="track"><div class="fill" style="width:40%"></div></div><span style="font-size:10px;color:var(--gray)">40%</span></div></div></div>
+</div></div>
+<div class="card" style="margin-top:16px"><h3>📊 本月病虫害趋势</h3><table><tr><th>病虫害</th><th>本月发现</th><th>上月发现</th><th>趋势</th><th>影响区域</th></tr><tr><td>榕树蓟马</td><td>47 处</td><td>32 处</td><td><span class="tag tr">↑ 47%</span></td><td>莲花山、深圳湾</td></tr><tr><td>樟巢螟</td><td>23 处</td><td>18 处</td><td><span class="tag ta">↑ 28%</span></td><td>深圳湾、人才公园</td></tr><tr><td>白粉病</td><td>15 处</td><td>22 处</td><td><span class="tag tg">↓ 32%</span></td><td>各公园散见</td></tr><tr><td>天牛幼虫</td><td>8 处</td><td>12 处</td><td><span class="tag tg">↓ 33%</span></td><td>莲花山</td></tr></table></div>
 </div>
 
-<div class="card">
-<div class="icon amber">🛸</div>
-<h3>无人机巡检调度</h3>
-<p>GIS 地图航线规划、自动航点生成、实时图传、航拍图片自动入库。支持 KML/GeoJSON 导入。</p>
-<div class="tag-row"><span class="tag amber">航线规划</span><span class="tag amber">实时图传</span><span class="tag amber">GPS定位</span></div>
+<!-- KNOWLEDGE BASE -->
+<div class="page" id="page-kb">
+<h2 style="margin-bottom:16px">📚 智慧园林知识库</h2>
+<div class="tabs"><div class="tab active" onclick="switchTab(this,'kb-trees')">🌳 苗木百科</div><div class="tab" onclick="switchTab(this,'kb-pests')">🪲 病虫害图鉴</div><div class="tab" onclick="switchTab(this,'kb-care')">📐 养护标准</div><div class="tab" onclick="switchTab(this,'kb-qa')">🤖 AI问答</div></div>
+<div class="tab-body active" id="kb-trees">
+<div class="search-box"><input placeholder="搜索苗木名称、科属..."><button class="btn-p">搜索</button></div>
+<div class="cards">
+${[{n:'香樟',l:'Cinnamomum camphora',f:'樟科',h:'常绿乔木，叶卵形，果紫黑色',c:'喜光，耐湿，抗风',p:'樟巢螟、白粉病'},{n:'细叶榕',l:'Ficus microcarpa',f:'桑科',h:'常绿乔木，气生根发达',c:'喜暖湿，耐阴',p:'榕树蓟马、灰白蚕蛾'},{n:'凤凰木',l:'Delonix regia',f:'豆科',h:'落叶乔木，花鲜红色',c:'喜高温，不耐寒',p:'凤凰木夜蛾'},{n:'黄花风铃木',l:'Tabebuia chrysantha',f:'紫葳科',h:'落叶乔木，花金黄色',c:'喜光，耐旱',p:'蚜虫、介壳虫'},{n:'大叶紫薇',l:'Lagerstroemia speciosa',f:'千屈菜科',h:'落叶乔木，花紫色',c:'喜光，耐湿',p:'紫薇长斑蚜、白粉病'},{n:'美丽异木棉',l:'Ceiba speciosa',f:'木棉科',h:'落叶乔木，花粉色',c:'喜光，耐旱',p:'介壳虫'},{n:'秋枫',l:'Bischofia javanica',f:'大戟科',h:'常绿乔木，三出复叶',c:'喜光，耐湿',p:'毒蛾'},{n:'宫粉紫荆',l:'Bauhinia variegata',f:'豆科',h:'半落叶乔木，花粉红色',c:'喜光，耐旱',p:'蚜虫'},{n:'红花羊蹄甲',l:'Bauhinia blakeana',f:'豆科',h:'常绿乔木，花紫红色',c:'喜光，耐旱瘠',p:'卷叶虫'},{n:'芒果',l:'Mangifera indica',f:'漆树科',h:'常绿乔木，果可食',c:'喜高温，不耐寒',p:'芒果横纹尾夜蛾'},{n:'蒲葵',l:'Livistona chinensis',f:'棕榈科',h:'常绿乔木，掌状叶',c:'喜暖湿，耐阴',p:'椰心叶甲'},{n:'大王椰子',l:'Roystonea regia',f:'棕榈科',h:'常绿乔木，干直立',c:'喜高温多湿',p:'椰心叶甲'}].map(t=>`
+<div class="card"><h3>${t.n} <span style="font-weight:400;font-size:11px;color:var(--gray)">${t.l}</span></h3>
+<p><strong>科属：</strong>${t.f} | <strong>特征：</strong>${t.h}</p><p><strong>习性：</strong>${t.c}</p><p><strong>常见病虫害：</strong><span class="tag tr">${t.p}</span></p></div>`).join('')}
+</div></div>
+<div class="tab-body" id="kb-pests">
+<div class="cards">
+${[{n:'榕树蓟马',s:'Gynaikothrips ficorum',t:'细叶榕、大叶榕',d:'若虫和成虫锉吸嫩叶汁液，叶片卷曲成虫瘿',c:'喷施吡虫啉；释放捕食螨生物防治；冬季修剪虫瘿枝叶'},{n:'樟巢螟',s:'Orthaga achatina',t:'香樟',d:'幼虫吐丝缀叶成巢，取食叶片',c:'人工摘除虫巢；喷施阿维菌素；冬季清除枯枝落叶'},{n:'白粉病',s:'Erysiphales',t:'大叶紫薇、月季、九里香',d:'叶片出现白色粉状物',c:'喷施三唑酮；合理修剪通风透光；清除病叶'},{n:'天牛幼虫',s:'Cerambycidae',t:'凤凰木、榕树、柳树',d:'幼虫蛀入木质部，树干出现蛀孔和木屑',c:'人工钩杀幼虫；注入敌敌畏；树干涂白防产卵'},{n:'椰心叶甲',s:'Brontispa longissima',t:'棕榈科植物',d:'成虫和幼虫取食未展开心叶',c:'喷施氯氰菊酯；释放椰心叶甲啮小蜂；加强检疫'},{n:'红火蚁',s:'Solenopsis invicta',t:'草坪、绿化带',d:'筑蚁丘，攻击人畜',c:'饵剂诱杀；灌巢处理；专业消杀公司作业'}].map(p=>`
+<div class="card"><h3>${p.n} <span style="font-weight:400;font-size:11px;color:var(--gray)">${p.s}</span></h3>
+<p><strong>危害树种：</strong>${p.t}</p><p><strong>识别特征：</strong>${p.d}</p><p><strong>防治措施：</strong>${p.c}</p></div>`).join('')}
+</div></div>
+<div class="tab-body" id="kb-care">
+<table><tr><th>苗木类型</th><th>修剪周期</th><th>施肥方案</th><th>浇水频次</th><th>冬季防护</th></tr>
+<tr><td>常绿乔木（香樟、榕树）</td><td>每年1-2次（春季为主）</td><td>有机肥10kg/株·年，分春秋两次</td><td>生长季每周1次，冬季减半</td><td>树干涂白防冻</td></tr>
+<tr><td>落叶乔木（凤凰木、紫荆）</td><td>冬季休眠期修剪</td><td>复合肥5kg/株·年</td><td>生长季每周2次</td><td>无需特殊防护</td></tr>
+<tr><td>棕榈科（大王椰子、蒲葵）</td><td>随时剪除枯黄老叶</td><td>棕榈专用肥3kg/株·年</td><td>生长季每周2次</td><td>心叶包裹防寒</td></tr>
+<tr><td>灌木（九里香、勒杜鹃）</td><td>每季度造型修剪</td><td>复合肥2kg/㎡·年</td><td>每3天1次</td><td>覆盖地膜防冻</td></tr>
+<tr><td>草坪（马尼拉草、狗牙根）</td><td>每2周修剪，留茬3-5cm</td><td>尿素15g/㎡·月</td><td>每2天1次</td><td>冬季停止施肥</td></tr></table>
+</div>
+<div class="tab-body" id="kb-qa">
+<div class="search-box"><textarea rows="3" placeholder="输入园林养护问题，如：桂花树叶发黄是什么原因？"></textarea></div><button class="btn-g" style="width:100%">🤖 AI 智能问答</button>
+<div class="card" style="margin-top:16px;background:var(--light)">
+<h3>💡 示例问答</h3>
+<p style="font-size:12px"><strong>Q：桂花树叶发黄是什么原因？</strong><br>A：桂花叶黄常见三种原因：① 缺铁性黄化——土壤偏碱导致，喷施硫酸亚铁；② 积水烂根——排水不畅，需改善土壤透气性；③ 红蜘蛛危害——叶背有细小网丝，喷施阿维菌素。建议先检查叶背是否有虫害，再检测土壤pH值。</p>
+</div></div>
 </div>
 
-<div class="card">
-<div class="icon purple">📋</div>
-<h3>工单与养护管理</h3>
-<p>AI 识别自动派单→养护工人接收→处置指引→现场反馈→管理员验收。全流程可追溯闭环。</p>
-<div class="tag-row"><span class="tag purple">智能派单</span><span class="tag purple">工单流转</span><span class="tag purple">处置指引</span></div>
+<!-- AI 识别 -->
+<div class="page" id="page-ai">
+<h2 style="margin-bottom:16px">🔍 AI 视觉识别</h2>
+<div class="tabs"><div class="tab active" onclick="switchTab(this,'ai-results')">📊 识别结果</div><div class="tab" onclick="switchTab(this,'ai-demo')">🖼️ 演示上传</div><div class="tab" onclick="switchTab(this,'ai-metrics')">📈 指标看板</div></div>
+<div class="tab-body active" id="ai-results">
+<table><tr><th>时间</th><th>公园/区域</th><th>识别类型</th><th>结果</th><th>置信度</th><th>状态</th></tr>
+<tr><td>07-25 09:32</td><td>深圳湾公园A区</td><td>枯黄检测</td><td>香樟3株异常</td><td><span class="tag tg">94.2%</span></td><td><span class="tag ta">待处置</span></td></tr>
+<tr><td>07-25 08:15</td><td>莲花山公园南门</td><td>虫害识别</td><td>榕树蓟马</td><td><span class="tag tg">87.5%</span></td><td><span class="tag tr">已派单</span></td></tr>
+<tr><td>07-24 16:40</td><td>人才公园西侧</td><td>草坪退化</td><td>斑秃面积约30㎡</td><td><span class="tag tg">91.0%</span></td><td><span class="tag tg">已处置</span></td></tr>
+<tr><td>07-24 14:20</td><td>深圳湾公园B区</td><td>乔木倾斜</td><td>凤凰木倾斜15°</td><td><span class="tag tg">97.8%</span></td><td><span class="tag tg">已处置</span></td></tr>
+<tr><td>07-24 10:05</td><td>莲花山公园山顶</td><td>病害识别</td><td>白粉病（大叶紫薇）</td><td><span class="tag ta">82.3%</span></td><td><span class="tag ta">待确认</span></td></tr></table>
+</div>
+<div class="tab-body" id="ai-demo">
+<div class="card"><h3>🖼️ 上传航拍图片进行AI识别</h3>
+<div style="border:2px dashed var(--border);border-radius:12px;padding:40px;text-align:center;margin:16px 0;cursor:pointer" onclick="document.getElementById('aiDemoResult').style.display='block'">
+<div style="font-size:40px">📸</div><p style="color:var(--gray)">点击或拖拽航拍图片到此处</p></div>
+<div id="aiDemoResult" style="display:none">
+<div class="card" style="background:#f0fdf4;border-color:var(--green)"><h3 style="color:var(--green)">✅ 识别完成</h3>
+<table style="margin-top:8px"><tr><th>检测项</th><th>结果</th><th>置信度</th></tr>
+<tr><td>🌿 枯死/枯黄</td><td>异常3处</td><td>94.2%</td></tr><tr><td>🪲 虫害</td><td>未检测到</td><td>—</td></tr><tr><td>🍂 病害</td><td>疑似白粉病1处</td><td>78.5%</td></tr><tr><td>🌳 乔木倾斜</td><td>正常</td><td>99.1%</td></tr></table>
+<div style="margin-top:12px"><button class="btn-g btn-sm">生成工单</button> <button class="btn-o btn-sm">重新识别</button></div></div></div></div>
+</div>
+<div class="tab-body" id="ai-metrics">
+<table><tr><th>识别任务</th><th>样本量</th><th>召回率</th><th>误报率</th><th>F1</th><th>状态</th></tr>
+<tr><td>枯死/枯黄检测</td><td>12,430</td><td>94.2%</td><td>5.8%</td><td>0.941</td><td><span class="tag tg">达标</span></td></tr>
+<tr><td>虫害识别(Top-3)</td><td>8,721</td><td>87.5%</td><td>12.1%</td><td>0.872</td><td><span class="tag tg">达标</span></td></tr>
+<tr><td>病害识别(Top-3)</td><td>4,532</td><td>82.3%</td><td>17.6%</td><td>0.821</td><td><span class="tag ta">接近</span></td></tr>
+<tr><td>草坪退化</td><td>6,890</td><td>91.0%</td><td>6.4%</td><td>0.922</td><td><span class="tag tg">达标</span></td></tr>
+<tr><td>乔木倾斜</td><td>3,215</td><td>97.8%</td><td>2.1%</td><td>0.979</td><td><span class="tag tg">达标</span></td></tr></table>
+</div>
 </div>
 
-<div class="card">
-<div class="icon teal">🗺️</div>
-<h3>GIS 可视化大屏</h3>
-<p>植被一张图、巡检轨迹回放、病虫害热力图、名木古树专项档案。园林局管理驾驶舱。</p>
-<div class="tag-row"><span class="tag teal">Cesium.js</span><span class="tag teal">热力图</span><span class="tag teal">大屏展示</span></div>
+<!-- DRONES -->
+<div class="page" id="page-drones">
+<h2 style="margin-bottom:16px">🛸 无人机巡检调度</h2>
+<div class="grid2">
+<div>
+<div class="card"><h3>📋 今日飞行任务</h3>
+<table><tr><th>任务</th><th>区域</th><th>飞手</th><th>状态</th></tr>
+<tr><td>深圳湾公园常规巡检</td><td>A区+B区</td><td>张建国</td><td><span class="tag tb">飞行中</span></td></tr>
+<tr><td>莲花山公园南侧</td><td>南门-山顶</td><td>李明辉</td><td><span class="tag tg">已完成</span></td></tr>
+<tr><td>人才公园西侧</td><td>西侧草坪</td><td>王伟强</td><td><span class="tag ta">待起飞</span></td></tr></table>
+</div>
+<div class="card" style="margin-top:16px"><h3>📊 本月飞行统计</h3>
+<div class="stats" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><div class="n" style="font-size:24px">42</div><div class="l">飞行架次</div></div><div class="stat"><div class="n" style="font-size:24px;color:var(--green)">380ha</div><div class="l">覆盖面积</div></div><div class="stat"><div class="n" style="font-size:24px;color:var(--amber)">8,520</div><div class="l">航拍图片</div></div></div></div>
+</div>
+<div class="map-placeholder">🗺️ 航线规划 · GIS地图（拖拽绘制巡检区域）</div>
+</div>
 </div>
 
-<div class="card">
-<div class="icon red">🧬</div>
-<h3>数字孪生 & 智能决策</h3>
-<p>无人机+土壤传感器+气象数据融合建模。植被生长预测、智能养护建议、碳排放核算。</p>
-<div class="tag-row"><span class="tag red">数字孪生</span><span class="tag red">预测模型</span><span class="tag red">碳排放</span></div>
+<!-- TASKS -->
+<div class="page" id="page-tasks">
+<h2 style="margin-bottom:16px">📋 工单管理</h2>
+<div class="tabs"><div class="tab active" onclick="switchTab(this,'task-pending')">⏳ 待处理</div><div class="tab" onclick="switchTab(this,'task-progress')">🔄 进行中</div><div class="tab" onclick="switchTab(this,'task-done')">✅ 已完成</div></div>
+<div class="tab-body active" id="task-pending">
+<table><tr><th>工单</th><th>类型</th><th>位置</th><th>AI建议</th><th>优先级</th><th>操作</th></tr>
+<tr><td>WO-0725-001</td><td>虫害处置</td><td>莲花山南门</td><td>喷施吡虫啉+修剪虫瘿</td><td><span class="tag tr">高</span></td><td><button class="btn-p btn-sm">派单</button></td></tr>
+<tr><td>WO-0725-002</td><td>枯木清理</td><td>深圳湾A区</td><td>移除枯死香樟3株+补种</td><td><span class="tag ta">中</span></td><td><button class="btn-p btn-sm">派单</button></td></tr>
+<tr><td>WO-0724-005</td><td>病害防治</td><td>人才公园</td><td>喷施三唑酮+清除病叶</td><td><span class="tag tb">低</span></td><td><button class="btn-p btn-sm">派单</button></td></tr></table></div>
+<div class="tab-body" id="task-progress">
+<table><tr><th>工单</th><th>工人</th><th>开始时间</th><th>进度</th></tr><tr><td>WO-0724-003</td><td>陈师傅</td><td>07-24 14:00</td><td><div class="bar"><span style="font-size:10px">处置中</span><div class="track"><div class="fill" style="width:70%"></div></div></div></td></tr><tr><td>WO-0724-004</td><td>刘师傅</td><td>07-24 15:30</td><td><div class="bar"><span style="font-size:10px">待验收</span><div class="track"><div class="fill" style="width:90%;background:var(--amber)"></div></div></div></td></tr></table></div>
+<div class="tab-body" id="task-done">
+<table><tr><th>工单</th><th>完成时间</th><th>评价</th></tr><tr><td>WO-0723-002</td><td>07-23 17:00</td><td><span class="tag tg">验收通过</span></td></tr><tr><td>WO-0723-001</td><td>07-23 11:30</td><td><span class="tag tg">验收通过</span></td></tr></table></div>
 </div>
 
+<!-- GIS -->
+<div class="page" id="page-gis">
+<h2 style="margin-bottom:16px">🗺️ GIS 可视化大屏</h2>
+<div class="tabs"><div class="tab active" onclick="switchTab(this,'gis-map')">🗺️ 植被一张图</div><div class="tab" onclick="switchTab(this,'gis-heat')">🔥 病虫害热力</div><div class="tab" onclick="switchTab(this,'gis-ancient')">🏛️ 名木古树</div></div>
+<div class="tab-body active" id="gis-map"><div class="map-placeholder">🌳 植被一张图 · 深圳湾公园 · 1,247棵乔木已标注</div></div>
+<div class="tab-body" id="gis-heat"><div class="map-placeholder" style="background:linear-gradient(135deg,#fee2e2,#fef3c7,#d1fae5)">🔥 病虫害热力图 · 本月榕树蓟马集中莲花山、深圳湾区域</div></div>
+<div class="tab-body" id="gis-ancient">
+<table><tr><th>编号</th><th>树种</th><th>树龄</th><th>位置</th><th>健康评分</th><th>最近巡检</th></tr>
+<tr><td>AG-001</td><td>细叶榕</td><td>120年</td><td>深圳湾公园古榕广场</td><td><span class="tag tg">92分</span></td><td>07-20</td></tr>
+<tr><td>AG-002</td><td>香樟</td><td>80年</td><td>莲花山公园山顶</td><td><span class="tag ta">78分</span></td><td>07-18</td></tr>
+<tr><td>AG-003</td><td>秋枫</td><td>65年</td><td>人才公园湖畔</td><td><span class="tag tg">85分</span></td><td>07-22</td></tr></table>
 </div>
-</section>
+</div>
 
-<section class="ai-section" id="ai">
-<h2>AI 识别类目与验收指标</h2>
-<p class="section-sub">每项识别任务独立评估，算法交付前需提供测试集指标报告，园林局专家人工抽检达标方可上线</p>
-<table class="ai-table">
-<thead><tr><th>识别任务</th><th>召回率</th><th>误报率上限</th><th>优先级</th><th>部署方式</th></tr></thead>
-<tbody>
-<tr><td>🌿 植被枯死/枯黄检测</td><td>≥90%</td><td>≤10%</td><td class="p0">P0</td><td>边缘+云端</td></tr>
-<tr><td>🪲 常见虫害识别（蚜虫、介壳虫、天牛等8类）</td><td>≥85%</td><td>≤15%</td><td class="p0">P0</td><td>云端精细</td></tr>
-<tr><td>🍂 常见病害识别（白粉病、锈病、炭疽病等6类）</td><td>≥80%</td><td>≤20%</td><td class="p1">P1</td><td>云端精细</td></tr>
-<tr><td>🌱 草坪斑秃/退化检测</td><td>≥85%</td><td>≤10%</td><td class="p1">P1</td><td>边缘+云端</td></tr>
-<tr><td>🌳 乔木倾斜/倒伏检测</td><td>≥95%</td><td>≤5%</td><td class="p0">P0</td><td>边缘实时</td></tr>
-<tr><td>💧 灌溉设施破损检测</td><td>≥80%</td><td>≤15%</td><td class="p2">P2</td><td>云端</td></tr>
-<tr><td>🌍 外来入侵物种识别</td><td>≥75%</td><td>≤25%</td><td class="p2">P2</td><td>云端</td></tr>
-<tr><td>🏛️ 名木古树长势评估</td><td>≥85%</td><td>≤10%</td><td class="p1">P1</td><td>多模态融合</td></tr>
-</tbody></table>
-</section>
-
-<section class="roadmap" id="roadmap">
-<h2>技术演进路线</h2>
-<p class="section-sub">三段式推进——从云端到边缘，从单点到全生命周期</p>
-<div class="phases">
-<div class="phase">
-<div class="time">短期 · 0-6 个月</div>
-<h3>☁️ 云端弹性 GPU 调度</h3>
-<p>航拍图片批量推理时按需启动 GPU，推理完成自动释放。降低客户运维成本，无需常驻 GPU 服务器。K8s + GPU Operator 实现弹性扩缩容。</p>
-</div>
-<div class="phase">
-<div class="time">中期 · 6-12 个月</div>
-<h3>📡 机载轻量 AI 边缘计算</h3>
-<p>植被异常检测在 NVIDIA Jetson 边缘盒子本地执行。仅将疑似异常的图片回传云端精细推理，减少 80% 图片传输量和云端算力消耗。</p>
-</div>
-<div class="phase">
-<div class="time">长期 · 12-24 个月</div>
-<h3>🌐 园林数字孪生</h3>
-<p>融合无人机巡检 + 土壤传感器 + 气象数据 + 历史养护记录。建立植被生长预测模型，为园林局提供"何时修剪/何时施肥/何时喷药"的智能决策。</p>
-</div>
-</div>
-</section>
-
-<section class="layers">
-<h2>五层产品架构</h2>
-<p class="section-sub">从硬件采集到智能决策的完整技术栈</p>
-<div class="layer-row"><span class="lname">🌐 应用层</span><span class="ldesc">Web管理后台 · 微信小程序 · GIS可视化大屏 · 数据报表</span><span class="ltags"><span>Vue.js</span><span>Cesium.js</span><span>微信原生</span></span></div>
-<div class="layer-row"><span class="lname">⚙️ 业务层</span><span class="ldesc">无人机调度 · 工单管理 · AI识别管线 · 养护决策引擎 · 知识库检索</span><span class="ltags"><span>Spring Boot</span><span>FastAPI</span><span>Celery</span></span></div>
-<div class="layer-row"><span class="lname">🧠 AI引擎层</span><span class="ldesc">病虫害识别 · 植被分类 · 变化检测 · 云端GPU推理 · 边缘轻量推理</span><span class="ltags"><span>PyTorch</span><span>ONNX</span><span>K8s GPU</span></span></div>
-<div class="layer-row"><span class="lname">💾 数据层</span><span class="ldesc">园林知识库 · 苗木档案 · 巡检图片 · 土壤传感器 · 气象数据 · 养护记录</span><span class="ltags"><span>PostgreSQL</span><span>Milvus</span><span>Redis</span></span></div>
-<div class="layer-row"><span class="lname">🔌 硬件层</span><span class="ldesc">无人机+机载相机 · 土壤传感器 · 气象站 · 边缘计算盒子 · 5G/4G通信模组</span><span class="ltags"><span>Jetson</span><span>RK3588</span><span>MQTT</span></span></div>
-</section>
-
-<section class="metrics" id="metrics">
-<h2>验收指标体系</h2>
-<p class="section-sub">量化交付，拒绝模糊承诺</p>
-<div class="grid">
-<div class="item"><div class="big">≥90%</div><div class="label">枯死检测召回率</div></div>
-<div class="item"><div class="big">≥85%</div><div class="label">虫害 Top-3 准确率</div></div>
-<div class="item"><div class="big">≤48h</div><div class="label">工单闭环中位数</div></div>
-<div class="item"><div class="big">≤¥5</div><div class="label">GPU 推理/公顷成本</div></div>
-</div>
-</section>
-
-<footer>
-<p>Smart Garden AI · MIT 开源协议 · <a href="https://github.com/yongmababa-pixel/smart-garden">GitHub</a></p>
-<p style="margin-top:8px">© 2026 马永</p>
-</footer>
+</div></div>
 
 <script>
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60)
-})
+function nav(el,page){
+  document.querySelectorAll('.sidebar nav a').forEach(a=>a.classList.remove('active'))
+  el.classList.add('active')
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
+  document.getElementById('page-'+page).classList.add('active')
+  document.getElementById('pageTitle').textContent={'dashboard':'📊 工作台','kb':'📚 知识库','ai':'🔍 AI识别','drones':'🛸 无人机巡检','tasks':'📋 工单管理','gis':'🗺️ GIS大屏'}[page]
+}
+function switchTab(el,id){
+  const parent=el.parentElement.parentElement
+  parent.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'))
+  el.classList.add('active')
+  parent.querySelectorAll('.tab-body').forEach(b=>b.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
+}
 </script>
 </body>
 </html>
