@@ -2,381 +2,179 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Smart Garden AI — 智慧园林AI平台 v4.0</title>
+<title>深圳湾公园 · 智慧园林AI平台</title>
 <style>
-:root{--blue:#2563eb;--b2:#1d4ed8;--dk:#0f172a;--d2:#1e293b;--gry:#64748b;--lt:#f8fafc;--w:#fff;--grn:#059669;--amb:#d97706;--red:#dc2626;--tel:#0d9488;--prp:#7c3aed;--brd:#e2e8f0;--f:system-ui,sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--f);color:var(--d2)}
-.app{display:flex;height:100vh}.side{width:240px;background:var(--dk);color:#fff;flex-shrink:0;display:flex;flex-direction:column;overflow-y:auto}
-.side .lo{padding:20px;font-size:17px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:8px}
-.side .lo .ai{background:linear-gradient(135deg,#2563eb,#7c3aed);padding:2px 8px;border-radius:6px;font-size:10px;margin-left:4px}
-.side nav{padding:12px}.side nav a{display:flex;align-items:center;gap:10px;padding:10px 14px;color:rgba(255,255,255,.55);text-decoration:none;border-radius:8px;font-size:12.5px;margin-bottom:2px;transition:.2s}
-.side nav a:hover,.side nav a.at{background:rgba(255,255,255,.1);color:#fff}.side nav a .ic{font-size:15px;width:20px;text-align:center}
-.side .nav-sep{color:rgba(255,255,255,.2);font-size:10px;padding:12px 14px 4px;text-transform:uppercase;letter-spacing:1px}
-.main{flex:1;overflow-y:auto;background:var(--lt)}header{padding:14px 24px;background:var(--w);border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between}
-h2{font-size:20px;font-weight:800;margin-bottom:4px}h3{font-size:15px;margin:12px 0 6px}
-.page{padding:20px 24px;max-width:1400px;display:none}.page.on{display:block}
-.story{background:linear-gradient(135deg,#eff6ff,#f0fdf4);border:1px solid #bfdbfe;border-left:4px solid var(--blue);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px}
-.story strong{color:var(--blue)}.story .steps{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
-.story .steps span{background:var(--blue);color:#fff;padding:2px 7px;border-radius:4px;font-size:9.5px;font-weight:600}
-.card{background:var(--w);border-radius:10px;padding:16px;border:1px solid var(--brd);box-shadow:0 1px 3px rgba(0,0,0,.03);margin-bottom:12px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:12px 0}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.stat{background:var(--w);border-radius:10px;padding:16px;border:1px solid var(--brd);text-align:center}
-.stat .n{font-size:28px;font-weight:900;color:var(--blue)}.stat .l{font-size:10px;color:var(--gry);margin-top:2px}
+:root{--b:#2563eb;--b2:#1d4ed8;--dk:#0f172a;--d2:#1e293b;--g:#64748b;--lt:#f8fafc;--w:#fff;--grn:#059669;--amb:#d97706;--red:#dc2626;--tel:#0d9488;--brd:#e2e8f0;--f:system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--f);color:var(--d2);background:#0a1628}
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#0a1628 0%,#1a365d 50%,#2563eb 100%);position:relative;overflow:hidden}
+.login-wrap::before{content:'';position:absolute;top:-30%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(37,99,235,.25),transparent 70%);border-radius:50%}
+.login-wrap::after{content:'';position:absolute;bottom:-20%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(5,150,105,.15),transparent 70%);border-radius:50%}
+.login-box{position:relative;z-index:1;background:rgba(255,255,255,.97);border-radius:20px;padding:40px 36px;width:520px;box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center}
+.login-box .logo{font-size:24px;font-weight:800;color:var(--dk);margin-bottom:4px}
+.login-box .logo span{color:var(--grn)}.login-box .sub{font-size:13px;color:var(--g);margin-bottom:24px}
+.login-box .roles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.login-box .role-card{padding:14px 10px;border:2px solid var(--brd);border-radius:12px;cursor:pointer;transition:.2s;text-align:center}
+.login-box .role-card:hover{border-color:var(--b);background:var(--lt)}
+.login-box .role-card.sel{border-color:var(--grn);background:#f0fdf4;box-shadow:0 0 0 3px rgba(5,150,105,.15)}
+.login-box .role-card .ri{font-size:28px;margin-bottom:4px}
+.login-box .role-card .rn{font-size:13px;font-weight:700}.login-box .role-card .rd{font-size:10px;color:var(--g);margin-top:2px}
+.login-box .btn-login{padding:12px 48px;background:var(--grn);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px;width:100%}
+.login-box .btn-login:hover{background:#047857}
+.app{display:flex;height:100vh;background:var(--lt);display:none}.app.on{display:flex}
+.side{width:220px;background:var(--dk);color:#fff;flex-shrink:0;display:flex;flex-direction:column}
+.side .lo{padding:18px 20px;font-size:16px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:6px}
+.side .lo span{color:#34d399}
+.side .park{font-size:10px;color:rgba(255,255,255,.4);padding:4px 20px 0}
+.side nav{flex:1;padding:12px}.side nav a{display:flex;align-items:center;gap:8px;padding:9px 12px;color:rgba(255,255,255,.5);text-decoration:none;border-radius:8px;font-size:12px;margin-bottom:2px;transition:.2s}
+.side nav a:hover,.side nav a.at{background:rgba(255,255,255,.1);color:#fff}
+.side .user-info{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;display:flex;align-items:center;gap:8px;cursor:pointer}
+.side .user-info .avatar{width:32px;height:32px;border-radius:50%;background:var(--grn);display:flex;align-items:center;justify-content:center;font-size:14px}
+.main{flex:1;overflow-y:auto}header{padding:14px 24px;background:var(--w);border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:18px;font-weight:700}
+.page{padding:20px 24px;max-width:1200px;display:none}.page.on{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat{background:var(--w);border-radius:12px;padding:20px;border:1px solid var(--brd);text-align:center}
+.stat .n{font-size:30px;font-weight:900;color:var(--b)}.stat .l{font-size:10px;color:var(--g);margin-top:2px}
+.card{background:var(--w);border-radius:12px;padding:18px;border:1px solid var(--brd);margin-bottom:14px}
 table{width:100%;border-collapse:collapse;font-size:11px;background:var(--w);border-radius:10px;overflow:hidden;border:1px solid var(--brd)}
 th{background:var(--dk);color:#fff;padding:8px 12px;text-align:left;font-weight:600;font-size:10px}
 td{padding:7px 12px;border-bottom:1px solid var(--brd)}tr:last-child td{border-bottom:none}tr:nth-child(even){background:var(--lt)}
-.tg{background:#d1fae5;color:var(--grn)}.tb{background:#dbeafe;color:var(--blue)}.ta{background:#fef3c7;color:var(--amb)}.tr{background:#fee2e2;color:var(--red)}.tp{background:#ede9fe;color:var(--prp)}
-.tag{padding:2px 7px;border-radius:10px;font-size:9.5px;font-weight:600}
+.tag{padding:2px 7px;border-radius:10px;font-size:9.5px;font-weight:600}.tg{background:#d1fae5;color:var(--grn)}.tb{background:#dbeafe;color:var(--b)}.ta{background:#fef3c7;color:var(--amb)}.tr{background:#fee2e2;color:var(--red)}.tp{background:#ede9fe;color:#7c3aed}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .tabs{display:flex;gap:4px;margin-bottom:14px;border-bottom:2px solid var(--brd)}
-.tab{padding:7px 14px;font-size:11px;cursor:pointer;color:var(--gry);border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s;font-weight:500}
-.tab.at{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
-.tbdy{display:none}.tbdy.on{display:block}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.api-box{background:var(--dk);color:#34d399;padding:12px 16px;border-radius:8px;font-family:monospace;font-size:10px;line-height:1.6;overflow-x:auto;margin:8px 0}
-.api-box .key{color:#60a5fa}.api-box .val{color:#fbbf24}.api-box .str{color:#34d399}.api-box .cmt{color:#64748b}
-.bid-card{background:var(--w);border:1px solid var(--brd);border-left:4px solid var(--blue);border-radius:10px;padding:16px;margin-bottom:12px}
-.bid-card.l2{border-left-color:var(--prp)}.bid-card.l3{border-left-color:var(--grn)}
-.bid-card .bid-meta{display:flex;gap:20px;font-size:11px;color:var(--gry);margin:8px 0}
-.bid-card .bid-meta strong{color:var(--d2)}.bid-card .bid-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.comp-card{background:var(--w);border-radius:10px;padding:14px;border:1px solid var(--brd)}
-.comp-card h3{font-size:14px}.comp-card .row{display:flex;justify-content:space-between;font-size:11px;margin:4px 0}
-.comp-card .row .val{font-weight:600}.comp-card .row .val.win{color:var(--grn)}.comp-card .row .val.lose{color:var(--red)}.comp-card .row .val.mid{color:var(--amb)}
-.scenario-card{background:var(--w);border-radius:10px;padding:14px;border:1px solid var(--brd)}
-.scenario-card h3{display:flex;align-items:center;gap:8px}
-.btn{padding:7px 14px;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:.2s}.bp{background:var(--blue);color:#fff}.bp:hover{background:var(--b2)}.bg{background:var(--grn);color:#fff}.bo{border:1px solid var(--brd);background:var(--w)}.bs{padding:3px 8px;font-size:10px}
-.pbar{display:flex;align-items:center;gap:8px}.pbar .trk{flex:1;background:#e2e8f0;border-radius:3px;height:5px;overflow:hidden}.pbar .fl{height:5px;border-radius:3px;background:var(--grn)}
-.roi-highlight{font-size:28px;font-weight:900;color:var(--grn);text-align:center;margin:12px 0}
-@media(max-width:768px){.side{display:none}.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3{grid-template-columns:1fr}}
+.tab{padding:7px 14px;font-size:11px;cursor:pointer;color:var(--g);border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s;font-weight:500}
+.tab.at{color:var(--b);border-bottom-color:var(--b);font-weight:700}
+.tab-body{display:none}.tab-body.on{display:block}
+.btn{padding:7px 14px;border:none;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:.2s}.bp{background:var(--b);color:#fff}.bg{background:var(--grn);color:#fff}.bo{border:1px solid var(--brd);background:var(--w)}.bs{padding:4px 10px;font-size:10px}
+.bar{display:flex;align-items:center;gap:8px}.bar .trk{flex:1;background:#e2e8f0;border-radius:3px;height:5px;overflow:hidden}.bar .fl{height:5px;border-radius:3px;background:var(--grn)}
+.map-box{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-radius:12px;height:350px;display:flex;align-items:center;justify-content:center;color:var(--b);font-size:22px;border:2px dashed var(--b);font-weight:700}
+.drone-box{border:2px dashed var(--brd);border-radius:12px;padding:40px;text-align:center;cursor:pointer;margin:12px 0}
+.drone-box:hover{border-color:var(--grn)}
+@media(max-width:768px){.side{display:none}.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3{grid-template-columns:1fr}.login-box{width:95%;padding:24px 16px}}
 </style>
 </head>
 <body>
-<div class="app">
+
+<!-- ============ LOGIN ============ -->
+<div class="login-wrap" id="loginPage">
+<div class="login-box">
+<div class="logo">🌿 深圳湾公园<span>·智慧园林</span></div>
+<div class="sub">Smart Garden AI Platform · Shenzhen Bay Park</div>
+<div class="roles" id="roleCards">
+<div class="role-card sel" data-role="admin" onclick="selRole(this,'admin')"><div class="ri">👤</div><div class="rn">公园管理员</div><div class="rd">全园态势·工单派发·报表</div></div>
+<div class="role-card" data-role="pilot" onclick="selRole(this,'pilot')"><div class="ri">🛸</div><div class="rn">巡检飞手</div><div class="rd">飞行任务·航拍上传</div></div>
+<div class="role-card" data-role="worker" onclick="selRole(this,'worker')"><div class="ri">🔧</div><div class="rn">养护工人</div><div class="rd">工单处置·现场反馈</div></div>
+<div class="role-card" data-role="engineer" onclick="selRole(this,'engineer')"><div class="ri">🧠</div><div class="rn">AI工程师</div><div class="rd">模型指标·标注审核</div></div>
+<div class="role-card" data-role="leader" onclick="selRole(this,'leader')"><div class="ri">📊</div><div class="rn">公园领导</div><div class="rd">GIS大屏·全面看板</div></div>
+</div>
+<button class="btn-login" onclick="doLogin()">进入系统</button>
+</div></div>
+
+<!-- ============ APP ============ -->
+<div class="app" id="appMain">
 <div class="side">
-<div class="lo">🌿 Smart Garden<span class="ai">AI</span></div>
-<nav>
-<a href="#" class="at" data-p="dash" onclick="nv(this,'dash')"><span class="ic">📊</span>工作台</a>
-<a href="#" data-p="kb" onclick="nv(this,'kb')"><span class="ic">📚</span>AI知识库</a>
-<a href="#" data-p="ai" onclick="nv(this,'ai')"><span class="ic">🔍</span>AI视觉识别</a>
-<a href="#" data-p="drone" onclick="nv(this,'drone')"><span class="ic">🛸</span>无人机调度</a>
-<a href="#" data-p="task" onclick="nv(this,'task')"><span class="ic">📋</span>工单养护</a>
-<a href="#" data-p="gis" onclick="nv(this,'gis')"><span class="ic">🗺️</span>GIS大屏</a>
-<a href="#" data-p="tech" onclick="nv(this,'tech')"><span class="ic">⚙️</span>技术对接</a>
-<div class="nav-sep">商业分析</div>
-<a href="#" data-p="market" onclick="nv(this,'market')"><span class="ic">📈</span>市场洞察</a>
-<a href="#" data-p="compet" onclick="nv(this,'compet')"><span class="ic">🏢</span>竞品分层</a>
-<a href="#" data-p="roi" onclick="nv(this,'roi')"><span class="ic">💰</span>ROI对比</a>
-<div class="nav-sep">数据管理</div>
-<a href="#" data-p="datacenter" onclick="nv(this,'datacenter')"><span class="ic">🗄️</span>数据中心</a>
-</nav>
+<div class="lo">🌿 深圳湾公园<span>AI</span></div>
+<div class="park">108公顷 · 1247棵乔木 · 42公顷草坪</div>
+<nav id="sidebarNav"></nav>
+<div class="user-info" onclick="doLogout()"><div class="avatar" id="userAvatar">👤</div><div id="userName">管理员</div><div style="font-size:9px;color:rgba(255,255,255,.3)">点击退出</div></div>
 </div>
-<div class="main">
-<header><h2 id="pt">📊 工作台</h2></header>
-
-<!-- ====== DASHBOARD (updated with Shenzhen real data) ====== -->
-<div class="page on" id="p-dash">
-<div class="story"><strong>📖 用户：园林局管理员</strong><div class="steps"><span>登录</span><span>查看指标</span><span>关注告警</span><span>派发工单</span></div></div>
-<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">1,320</div><div class="l">深圳公园总数</div></div><div class="stat"><div class="n" style="color:var(--blue)">45.7%</div><div class="l">绿化覆盖率</div></div><div class="stat"><div class="n" style="color:var(--red)">8</div><div class="l">今日新增告警</div></div><div class="stat"><div class="n" style="color:var(--tel)">87.5%</div><div class="l">AI识别F1均分</div></div></div>
-<div class="grid2">
-<div class="card"><h3>📋 待处理告警</h3>
-<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--brd)"><div style="flex:1"><strong style="font-size:11px">香樟枯黄异常(3株)</strong><br><span style="font-size:10px;color:var(--gry)">深圳湾公园A区 · 10分钟前</span></div><span class="tag tr">高</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--brd)"><div style="flex:1"><strong style="font-size:11px">榕树蓟马虫害</strong><br><span style="font-size:10px;color:var(--gry)">莲花山公园南门 · 1小时前</span></div><span class="tag ta">中</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--brd)"><div style="flex:1"><strong style="font-size:11px">黄土裸露检测</strong><br><span style="font-size:10px;color:var(--gry)">人才公园西侧 · 2小时前</span></div><span class="tag ta">中</span></div><div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--brd)"><div style="flex:1"><strong style="font-size:11px">湖面漂浮垃圾</strong><br><span style="font-size:10px;color:var(--gry)">深圳湾公园湖区 · 3小时前</span></div><span class="tag tb">低</span></div></div>
-<div class="card"><h3>🛸 今日巡检进度</h3>
-<div class="pbar" style="margin:10px 0"><span style="font-size:10px;min-width:75px">深圳湾公园</span><div class="trk"><div class="fl" style="width:85%"></div></div><span style="font-size:9px;color:var(--gry)">85%</span></div><div class="pbar" style="margin:10px 0"><span style="font-size:10px;min-width:75px">莲花山公园</span><div class="trk"><div class="fl" style="width:60%"></div></div><span style="font-size:9px;color:var(--gry)">60%</span></div><div class="pbar" style="margin:10px 0"><span style="font-size:10px;min-width:75px">人才公园</span><div class="trk"><div class="fl" style="width:40%"></div></div><span style="font-size:9px;color:var(--gry)">40%</span></div></div>
-</div></div>
-
-<!-- ====== KNOWLEDGE BASE ====== -->
-<div class="page" id="p-kb">
-<div class="story"><strong>📖 用户：园林养护专家 & AI训练师</strong><div class="steps"><span>查询知识</span><span>补充数据</span><span>标注训练</span><span>验证效果</span></div></div>
-<div class="tabs"><div class="tab at" onclick="st(this,'kb-trees')">🌳 苗木百科(50)</div><div class="tab" onclick="st(this,'kb-pests')">🪲 病虫害(30)</div><div class="tab" onclick="st(this,'kb-care')">📐 养护标准(20)</div><div class="tab" onclick="st(this,'kb-train')">🧠 AI训练</div></div>
-<div class="tbdy on" id="kb-trees"><div class="cards">
-<div class="card"><h3>香樟 <span style="font-weight:400;font-size:10px;color:var(--gry)">Cinnamomum camphora</span></h3><p style="font-size:11px"><strong>樟科</strong> | 常绿乔木·叶卵形</p><p style="font-size:11px"><span class="tag tr">樟巢螟、白粉病</span> · 喜光耐湿抗风</p></div>
-<div class="card"><h3>细叶榕 <span style="font-weight:400;font-size:10px;color:var(--gry)">Ficus microcarpa</span></h3><p style="font-size:11px"><strong>桑科</strong> | 常绿·气生根发达</p><p style="font-size:11px"><span class="tag tr">榕树蓟马</span> · 喜暖湿耐阴</p></div>
-<div class="card"><h3>凤凰木 <span style="font-weight:400;font-size:10px;color:var(--gry)">Delonix regia</span></h3><p style="font-size:11px"><strong>豆科</strong> | 落叶·花鲜红色</p><p style="font-size:11px"><span class="tag tr">凤凰木夜蛾</span> · 喜高温不耐寒</p></div>
-<div class="card"><h3>黄花风铃木 <span style="font-weight:400;font-size:10px;color:var(--gry)">Tabebuia chrysantha</span></h3><p style="font-size:11px"><strong>紫葳科</strong> | 落叶·花金黄色</p><p style="font-size:11px"><span class="tag tr">蚜虫</span> · 喜光耐旱</p></div>
-<div class="card"><h3>大叶紫薇 <span style="font-weight:400;font-size:10px;color:var(--gry)">Lagerstroemia speciosa</span></h3><p style="font-size:11px"><strong>千屈菜科</strong> | 落叶·花紫色</p><p style="font-size:11px"><span class="tag tr">紫薇长斑蚜</span> · 喜光耐湿</p></div>
-<div class="card"><h3>美丽异木棉 <span style="font-weight:400;font-size:10px;color:var(--gry)">Ceiba speciosa</span></h3><p style="font-size:11px"><strong>木棉科</strong> | 落叶·花粉色</p><p style="font-size:11px"><span class="tag tr">介壳虫</span> · 喜光耐旱</p></div>
-<div class="card"><h3>秋枫 <span style="font-weight:400;font-size:10px;color:var(--gry)">Bischofia javanica</span></h3><p style="font-size:11px"><strong>大戟科</strong> | 常绿·三出复叶</p><p style="font-size:11px"><span class="tag tr">毒蛾</span> · 喜光耐湿</p></div>
-<div class="card"><h3>宫粉紫荆 <span style="font-weight:400;font-size:10px;color:var(--gry)">Bauhinia variegata</span></h3><p style="font-size:11px"><strong>豆科</strong> | 半落叶·花粉红</p><p style="font-size:11px"><span class="tag tr">蚜虫</span> · 喜光耐旱</p></div>
-<div class="card"><h3>红花羊蹄甲 <span style="font-weight:400;font-size:10px;color:var(--gry)">Bauhinia blakeana</span></h3><p style="font-size:11px"><strong>豆科</strong> | 常绿·花紫红</p><p style="font-size:11px"><span class="tag tr">卷叶虫</span> · 喜光</p></div>
-<div class="card"><h3>芒果 <span style="font-weight:400;font-size:10px;color:var(--gry)">Mangifera indica</span></h3><p style="font-size:11px"><strong>漆树科</strong> | 常绿</p><p style="font-size:11px"><span class="tag tr">芒果横纹尾夜蛾</span> · 喜高温</p></div>
-<div class="card"><h3>蒲葵 <span style="font-weight:400;font-size:10px;color:var(--gry)">Livistona chinensis</span></h3><p style="font-size:11px"><strong>棕榈科</strong> | 常绿·掌状叶</p><p style="font-size:11px"><span class="tag tr">椰心叶甲</span> · 喜暖湿</p></div>
-<div class="card"><h3>大王椰子 <span style="font-weight:400;font-size:10px;color:var(--gry)">Roystonea regia</span></h3><p style="font-size:11px"><strong>棕榈科</strong> | 常绿·干直立</p><p style="font-size:11px"><span class="tag tr">椰心叶甲</span> · 喜高温多湿</p></div>
-
-</div></div>
-<div class="tbdy" id="kb-pests"><div class="cards">
-<div class="card"><h3>榕树蓟马 <span style="font-weight:400;font-size:10px;color:var(--gry)">Gynaikothrips ficorum</span></h3><p style="font-size:11px"><strong>危害：</strong>细叶榕</p><p style="font-size:11px"><strong>识别：</strong>锉吸嫩叶汁液·叶片卷曲成虫瘿</p><p style="font-size:11px"><strong>防治：</strong>吡虫啉+释放捕食螨</p></div>
-<div class="card"><h3>樟巢螟 <span style="font-weight:400;font-size:10px;color:var(--gry)">Orthaga achatina</span></h3><p style="font-size:11px"><strong>危害：</strong>香樟</p><p style="font-size:11px"><strong>识别：</strong>幼虫吐丝缀叶成巢取食叶片</p><p style="font-size:11px"><strong>防治：</strong>阿维菌素+人工摘巢</p></div>
-<div class="card"><h3>白粉病 <span style="font-weight:400;font-size:10px;color:var(--gry)">Erysiphales</span></h3><p style="font-size:11px"><strong>危害：</strong>大叶紫薇</p><p style="font-size:11px"><strong>识别：</strong>叶面白色粉状物</p><p style="font-size:11px"><strong>防治：</strong>三唑酮+修剪通风</p></div>
-<div class="card"><h3>天牛幼虫 <span style="font-weight:400;font-size:10px;color:var(--gry)">Cerambycidae</span></h3><p style="font-size:11px"><strong>危害：</strong>凤凰木</p><p style="font-size:11px"><strong>识别：</strong>蛀入木质部·蛀孔木屑</p><p style="font-size:11px"><strong>防治：</strong>钩杀+敌敌畏注入</p></div>
-<div class="card"><h3>椰心叶甲 <span style="font-weight:400;font-size:10px;color:var(--gry)">Brontispa longissima</span></h3><p style="font-size:11px"><strong>危害：</strong>棕榈科</p><p style="font-size:11px"><strong>识别：</strong>取食未展开心叶</p><p style="font-size:11px"><strong>防治：</strong>氯氰菊酯+姬小蜂</p></div>
-<div class="card"><h3>红火蚁 <span style="font-weight:400;font-size:10px;color:var(--gry)">Solenopsis invicta</span></h3><p style="font-size:11px"><strong>危害：</strong>草坪</p><p style="font-size:11px"><strong>识别：</strong>筑蚁丘攻击人畜</p><p style="font-size:11px"><strong>防治：</strong>饵剂诱杀+灌巢</p></div>
-
-</div></div>
-<div class="tbdy" id="kb-care"><table><tr><th>苗木类型</th><th>修剪周期</th><th>施肥方案</th><th>浇水</th><th>冬季防护</th></tr><tr><td>常绿乔木</td><td>春季1-2次/年</td><td>有机肥10kg/株·年</td><td>每周1次</td><td>树干涂白</td></tr><tr><td>落叶乔木</td><td>冬季休眠期</td><td>复合肥5kg/株·年</td><td>每周2次</td><td>无需</td></tr><tr><td>棕榈科</td><td>随时剪枯叶</td><td>专用肥3kg/株·年</td><td>每周2次</td><td>心叶包裹</td></tr><tr><td>灌木</td><td>每季度造型</td><td>复合肥2kg/㎡·年</td><td>每3天</td><td>地膜覆盖</td></tr><tr><td>草坪</td><td>每2周(3-5cm)</td><td>尿素15g/㎡·月</td><td>每2天</td><td>停肥</td></tr></table></div>
-<div class="tbdy" id="kb-train"><div class="story"><strong>🧠 AI训练管线：</strong>50种苗木+30种病虫害+20条养护标准→结构化数据→Tokenization→Embedding→Milvus向量库。病虫害识别模型基于ResNet-50在12,430张标注航拍图上Fine-tune。</div>
-<div class="grid3">
-<div class="card"><h3>📥 数据预处理</h3><p style="font-size:11px">结构化知识库→文本Tokenization→Embedding向量→存入Milvus。养护标准表格转自然语言段落用于RAG检索。</p><div class="api-box"><span class="cmt">// 训练数据格式</span><br>{"text":"香樟常见樟巢螟危害","label":"pest_樟巢螟","source":"kb_tree_001"}</div></div>
-<div class="card"><h3>🔧 模型微调</h3><p style="font-size:11px">ResNet-50预训练+12,430张标注航拍图Fine-tune。每类病虫害≥500样本。验证/训练=2:8。</p><div class="api-box"><span class="cmt">// 训练配置</span><br>{"model":"ResNet-50","epochs":50,<br>"batch":32,"lr":0.001,<br>"训练集":9944,"验证集":2486}</div></div>
-<div class="card"><h3>📊 评估指标</h3><p style="font-size:11px">达标注：Recall≥85%。输出混淆矩阵+各类别P/R/F1。</p><div class="api-box"><span class="cmt">// 训练结果</span><br>{"枯黄检测":{"recall":0.942},<br>"虫害识别":{"recall":0.875}}</div></div>
-</div></div>
+<div class="main"><header><h1 id="pageTitle">📊 工作台</h1><div style="font-size:11px;color:var(--g)" id="headerSub"></div></header>
+<div id="pageContent"></div></div>
 </div>
-
-<!-- ====== AI RECOGNITION (expanded with new scenarios) ====== -->
-<div class="page" id="p-ai">
-<div class="story"><strong>📖 用户：AI算法工程师 & 园林巡检员</strong><div class="steps"><span>上传航拍</span><span>AI识别</span><span>查看结果</span><span>人工复核</span><span>生成工单</span></div></div>
-<div class="tabs"><div class="tab at" onclick="st(this,'ai-cases')">🔍 识别场景</div><div class="tab" onclick="st(this,'ai-metrics')">📈 模型指标</div><div class="tab" onclick="st(this,'ai-api')">🔌 API文档</div><div class="tab" onclick="st(this,'ai-compare')">📊 多期对比</div></div>
-<div class="tbdy on" id="ai-cases">
-<h3>AI识别场景矩阵（覆盖深圳真实园林巡检需求）</h3>
-<div class="cards">
-<div class="scenario-card"><h3>🌿 植被枯黄/枯死</h3><p style="font-size:11px;color:var(--gry)">识别乔木、灌木因缺水、病害导致的叶片发黄或整株枯死。P0级，召回率≥90%。对应：盐田鹏湾社区"植被枯死识别"</p><span class="tag tb">12,430样本</span></div>
-<div class="scenario-card"><h3>🪲 病虫害识别(8类)</h3><p style="font-size:11px;color:var(--gry)">蚜虫、介壳虫、天牛、蓟马、樟巢螟、白粉病、锈病、炭疽病。P0级，Top-3召回≥85%。对应：香蜜湖公园"植被病虫害识别"</p><span class="tag tb">8,721样本</span></div>
-<div class="scenario-card"><h3>🟤 黄土裸露检测</h3><p style="font-size:11px;color:var(--gry)">识别绿地中缺株、斑秃、黄土裸露区域，自动估算面积。P0级，召回率≥85%。对应：市城管局遥感监测"绿地缺株、黄土裸露识别"</p><span class="tag ta">6,890样本</span></div>
-<div class="scenario-card"><h3>🏗️ 违建侵占绿化</h3><p style="font-size:11px;color:var(--gry)">对比多期航拍图片，自动检测新增违建、材料堆放、临时设施等侵占绿地行为。P1级，召回率≥80%。对应：市城管局"违建侵占绿化识别"</p><span class="tag tr">3,210样本</span></div>
-<div class="scenario-card"><h3>🌊 湖面漂浮垃圾</h3><p style="font-size:11px;color:var(--gry)">识别公园湖面、河道中的漂浮垃圾（塑料袋、树枝、藻类聚集）。P1级，召回率≥80%。对应：香蜜湖"湖面垃圾识别"+盐田"湖面漂浮垃圾"</p><span class="tag ta">4,100样本</span></div>
-<div class="scenario-card"><h3>🔬 水体污染识别</h3><p style="font-size:11px;color:var(--gry)">通过多光谱图像分析水体颜色异常、藻类爆发，判断水质变化趋势。P2级，召回率≥75%。对应：香蜜湖"水体污染识别"</p><span class="tag tr">2,800样本</span></div>
-<div class="scenario-card"><h3>🌳 乔木倾斜/倒伏</h3><p style="font-size:11px;color:var(--gry)">检测台风前后乔木倾斜角度，标记倒伏风险。P0级，召回率≥95%。深圳台风季高频使用。</p><span class="tag tb">3,215样本</span></div>
-<div class="scenario-card"><h3>⚠️ 公园安全隐患</h3><p style="font-size:11px;color:var(--gry)">识别护栏破损、步道塌陷、路灯倾斜、设施损坏等公园基础设施异常。P1级，召回率≥80%。对应：香蜜湖+大运公园"公园安全隐患告警"</p><span class="tag ta">5,420样本</span></div>
-<div class="scenario-card"><h3>💧 灌溉设施破损</h3><p style="font-size:11px;color:var(--gry)">检测喷头损坏、管道破裂、漏水积水等灌溉系统异常。P2级，召回率≥75%。对应：香蜜湖"设施破损识别"</p><span class="tag tr">1,890样本</span></div>
-</div></div>
-<div class="tbdy" id="ai-metrics"><table><tr><th>识别任务</th><th>优先级</th><th>样本量</th><th>Recall</th><th>F1</th><th>目标</th><th>状态</th><th>对应招标项目</th></tr><tr><td>枯死/枯黄检测</td><td><span class="tag tr">P0</span></td><td>12,430</td><td>94.2%</td><td>0.930</td><td>≥90%</td><td><span class="tag tg">达标</span></td><td>盐田鹏湾</td></tr><tr><td>虫害识别(Top-3)</td><td><span class="tag tr">P0</span></td><td>8,721</td><td>87.5%</td><td>0.869</td><td>≥85%</td><td><span class="tag tg">达标</span></td><td>香蜜湖公园</td></tr><tr><td>黄土裸露检测</td><td><span class="tag tr">P0</span></td><td>6,890</td><td>91.0%</td><td>0.922</td><td>≥85%</td><td><span class="tag tg">达标</span></td><td>市城管局遥感</td></tr><tr><td>乔木倾斜/倒伏</td><td><span class="tag tr">P0</span></td><td>3,215</td><td>97.8%</td><td>0.980</td><td>≥95%</td><td><span class="tag tg">达标</span></td><td>龙华一网统飞</td></tr><tr><td>湖面漂浮垃圾</td><td><span class="tag ta">P1</span></td><td>4,100</td><td>83.5%</td><td>0.842</td><td>≥80%</td><td><span class="tag tg">达标</span></td><td>盐田鹏湾</td></tr><tr><td>公园安全隐患</td><td><span class="tag ta">P1</span></td><td>5,420</td><td>82.1%</td><td>0.835</td><td>≥80%</td><td><span class="tag tg">达标</span></td><td>香蜜湖</td></tr><tr><td>违建侵占绿化</td><td><span class="tag ta">P1</span></td><td>3,210</td><td>80.5%</td><td>0.812</td><td>≥80%</td><td><span class="tag ta">接近</span></td><td>市城管局</td></tr><tr><td>水体污染识别</td><td><span class="tag tb">P2</span></td><td>2,800</td><td>78.2%</td><td>0.798</td><td>≥75%</td><td><span class="tag tg">达标</span></td><td>香蜜湖</td></tr><tr><td>灌溉设施破损</td><td><span class="tag tb">P2</span></td><td>1,890</td><td>76.5%</td><td>0.782</td><td>≥75%</td><td><span class="tag tg">达标</span></td><td>香蜜湖</td></tr></table></div>
-<div class="tbdy" id="ai-api"><div class="card"><h3>🔌 AI识别 REST API</h3><div class="api-box"><span class="cmt">POST /api/v1/ai/detect</span><br>{<br>&nbsp;&nbsp;<span class="key">"image"</span>: <span class="str">"@drone_photo.jpg"</span>,<br>&nbsp;&nbsp;<span class="key">"tasks"</span>: [<span class="str">"枯黄"</span>,<span class="str">"虫害"</span>,<span class="str">"黄土裸露"</span>,<span class="str">"湖面垃圾"</span>,<span class="str">"违建"</span>,<span class="str">"倾斜"</span>,<span class="str">"安全隐患"</span>],<br>&nbsp;&nbsp;<span class="key">"compare_with"</span>: <span class="str">"2026-03-15"</span> <span class="cmt">// 多期对比（可选）</span><br>}</div></div></div>
-<div class="tbdy" id="ai-compare"><div class="card"><h3>📊 多期巡检数据对比</h3><p style="font-size:11px;color:var(--gry)">对标市城管局"年度绿化长势监测报表"需求。同一区域不同时间的航拍图片AI对比分析——自动标注新增枯死、恢复生长、新增违建等变化区域。</p><table><tr><th>对比期</th><th>区域</th><th>新增枯死</th><th>恢复生长</th><th>新增违建</th><th>变化率</th></tr><tr><td>2026-06 vs 2026-03</td><td>深圳湾公园A区</td><td><span class="tag tr">+3株</span></td><td><span class="tag tg">+5株</span></td><td>0</td><td><span class="tag tb">-2.1%</span></td></tr><tr><td>2026-06 vs 2026-03</td><td>莲花山公园</td><td><span class="tag ta">+1株</span></td><td><span class="tag tg">+2株</span></td><td><span class="tag tr">1处</span></td><td><span class="tag ta">+0.8%</span></td></tr></table></div></div>
-</div>
-
-<!-- ====== DRONE (same as v3, kept for continuity) ====== -->
-<div class="page" id="p-drone">
-<div class="story"><strong>📖 用户：无人机飞手 & 巡检调度员</strong><div class="steps"><span>航线规划</span><span>任务创建</span><span>执行飞行</span><span>图片回传</span><span>AI分析</span></div></div>
-<div class="tabs"><div class="tab at" onclick="st(this,'drone-tasks')">📋 飞行任务</div><div class="tab" onclick="st(this,'drone-api')">🔌 无人机接口</div><div class="tab" onclick="st(this,'drone-specs')">📡 遥测参数</div></div>
-<div class="tbdy on" id="drone-tasks"><div class="grid2"><div class="card"><h3>📋 今日任务</h3><table><tr><th>任务</th><th>区域</th><th>飞手</th><th>状态</th></tr><tr><td>深圳湾公园A区</td><td>A区+B区</td><td>张建国</td><td><span class="tag tb">飞行中</span></td></tr><tr><td>莲花山南侧</td><td>南门-山顶</td><td>李明辉</td><td><span class="tag tg">已完成</span></td></tr><tr><td>人才公园巡检</td><td>西侧草坪</td><td>王伟强</td><td><span class="tag ta">待起飞</span></td></tr></table></div><div class="card"><h3>📊 飞行统计</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;margin-top:12px"><div><div style="font-size:24px;font-weight:900;color:var(--blue)">42</div><div style="font-size:10px;color:var(--gry)">飞行架次</div></div><div><div style="font-size:24px;font-weight:900;color:var(--grn)">380ha</div><div style="font-size:10px;color:var(--gry)">覆盖面积</div></div><div><div style="font-size:24px;font-weight:900;color:var(--amb)">8,520</div><div style="font-size:10px;color:var(--gry)">航拍图片</div></div></div></div></div></div>
-<div class="tbdy" id="drone-api"><div class="grid2"><div class="card"><h3>控制接口</h3><div class="api-box"><span class="cmt">POST /api/v1/drone/command</span><br>{<br>&nbsp;&nbsp;<span class="key">"drone_id"</span>:<span class="str">"DJI-M300-001"</span>,<br>&nbsp;&nbsp;<span class="key">"mission"</span>:{<span class="key">"waypoints"</span>:[{<span class="key">"lat"</span>:<span class="val">22.543</span>,<span class="key">"lng"</span>:<span class="val">114.058</span>,<span class="key">"alt"</span>:<span class="val">80</span>,<span class="key">"speed"</span>:<span class="val">12</span>}],<span class="key">"overlap"</span>:<span class="val">0.7</span>}<br>}</div></div><div class="card"><h3>遥测数据</h3><div class="api-box"><span class="cmt">Topic: telemetry/drone/{id} (MQTT)</span><br>{<br>&nbsp;&nbsp;<span class="key">"ts"</span>:<span class="val">1750809600</span>,<br>&nbsp;&nbsp;<span class="key">"gps"</span>:{<span class="key">"lat"</span>:<span class="val">22.5</span>,<span class="key">"lng"</span>:<span class="val">114.1</span>,<span class="key">"alt"</span>:<span class="val">82.5</span>},<br>&nbsp;&nbsp;<span class="key">"battery"</span>:{<span class="key">"pct"</span>:<span class="val">78</span>},<br>&nbsp;&nbsp;<span class="key">"rssi"</span>:<span class="val">-68</span>,<span class="key">"sat"</span>:<span class="val">18</span><br>}</div></div></div></div>
-<div class="tbdy" id="drone-specs"><table><tr><th>参数</th><th>类型</th><th>单位</th><th>频率</th><th>说明</th></tr><tr><td>gps</td><td>float64</td><td>度</td><td>1Hz</td><td>WGS84，精确6位小数</td></tr><tr><td>alt</td><td>float32</td><td>米</td><td>1Hz</td><td>相对起飞点高度</td></tr><tr><td>battery</td><td>int</td><td>%</td><td>0.2Hz</td><td><20%自动返航</td></tr><tr><td>speed</td><td>float32</td><td>m/s</td><td>5Hz</td><td>地速</td></tr><tr><td>rssi</td><td>int</td><td>dBm</td><td>1Hz</td><td><-90告警</td></tr><tr><td>satellites</td><td>int</td><td>颗</td><td>0.2Hz</td><td><12精度降级</td></tr></table></div>
-</div>
-
-<!-- ====== TASKS & GIS & TECH (compressed for space) ====== -->
-<div class="page" id="p-task">
-<div class="story"><strong>📖 用户：养护工人 & 验收管理员</strong><div class="steps"><span>AI生成工单</span><span>智能派发</span><span>现场处置</span><span>拍照反馈</span><span>验收闭环</span></div></div>
-<div class="tabs"><div class="tab at" onclick="st(this,'task-pen')">⏳ 待派发(3)</div><div class="tab" onclick="st(this,'task-prog')">🔄 处置中(2)</div></div>
-<div class="tbdy on" id="task-pen"><table><tr><th>工单</th><th>AI识别</th><th>位置</th><th>AI建议</th><th>优先</th></tr><tr><td>WO-0725-001</td><td>榕树蓟马</td><td>莲花山南门</td><td>吡虫啉1500倍+修剪虫瘿</td><td><span class="tag tr">高</span></td></tr><tr><td>WO-0725-002</td><td>枯黄3株</td><td>深圳湾A区</td><td>检查土壤+浇水+追肥</td><td><span class="tag ta">中</span></td></tr><tr><td>WO-0725-003</td><td>湖面垃圾</td><td>深圳湾湖区</td><td>安排保洁船打捞</td><td><span class="tag ta">中</span></td></tr></table></div>
-<div class="tbdy" id="task-prog"><table><tr><th>工单</th><th>工人</th><th>开始</th><th>进度</th></tr><tr><td>WO-0724-003</td><td>陈师傅</td><td>07-24 14:00</td><td><div class="pbar"><span style="font-size:9px">处置中</span><div class="trk"><div class="fl" style="width:70%"></div></div></div></td></tr></table></div>
-</div>
-
-<div class="page" id="p-gis"><div class="story"><strong>📖 用户：园林局领导</strong><div class="steps"><span>查看总览</span><span>关注热力</span><span>专项档案</span><span>数据导出</span></div></div>
-<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">1,247</div><div class="l">乔木已建档</div></div><div class="stat"><div class="n" style="color:var(--red)">93</div><div class="l">本月告警</div></div><div class="stat"><div class="n" style="color:var(--blue)">87%</div><div class="l">48h闭环率</div></div><div class="stat"><div class="n" style="color:var(--tel)">1320</div><div class="l">深圳公园总数</div></div></div></div>
-
-<div class="page" id="p-tech"><div class="story"><strong>📖 技术对接</strong><div class="steps"><span>设备注册</span><span>协议对接</span><span>数据联调</span><span>上线验收</span></div></div>
-<div class="grid2"><div class="card"><h3>REST API</h3><div class="api-box"><span class="cmt">GET    /api/v1/devices</span><br><span class="cmt">POST   /api/v1/devices</span><br><span class="cmt">GET    /api/v1/kb/plants</span><br><span class="cmt">POST   /api/v1/tasks</span><br><span class="cmt">GET    /api/v1/reports/pest-trends</span></div></div><div class="card"><h3>MQTT协议</h3><table><tr><td>Broker</td><td style="font-family:monospace">mqtt.sg.ai:1883</td></tr><tr><td>ClientID</td><td style="font-family:monospace">DRONE_{SN}</td></tr><tr><td>QoS</td><td>≥1</td></tr><tr><td>KeepAlive</td><td>30s(超90s离线)</td></tr></table></div></div></div>
-
-<!-- ====== MARKET INSIGHTS (NEW) ====== -->
-<div class="page" id="p-market">
-<div class="story"><strong>📖 用户：商务决策者</strong> — 基于2026年深圳真实招投标数据的市场分析。帮助园林企业理解三个市场分层：市级全域大单、区级公园总包、街道轻量改造。<div class="steps"><span>市场规模</span><span>项目分层</span><span>目标客户</span><span>差异化定位</span></div></div>
-
-<h3>📈 深圳智慧园林市场三层格局（2026年真实招投标数据）</h3>
-<div class="bid-card"><div class="bid-meta"><strong>第一层：市级/区级全域大单</strong> ¥800万-1500万 | 头部硬件厂商主导</div>
-<div class="grid2" style="margin-top:8px">
-<div><strong>香蜜湖公园智慧化（福田区，预算1500万）</strong><p style="font-size:10px;color:var(--gry)">52.86公顷大型城市核心公园。需求：物联网传感器+无人机巡检+植被枯黄/病虫害/湖面垃圾/设施破损AI识别+智慧园林运维平台+游客智慧服务+云端AI推理。道通智能、深圳园林股份参与竞标。大型公园总包，偏向资金资质的头部企业。</p></div>
-<div><strong>龙华区政务低空"一网统飞"（预算839万，正在招标）</strong><p style="font-size:10px;color:var(--gry)">覆盖全区公园绿地+河道+查违，统一无人机调度+园林AI识别平台。大型全域项目，全自动机库厂商优势明显。</p></div>
-</div></div>
-
-<div class="bid-card l2"><div class="bid-meta"><strong>第二层：大型综合智慧公园总包</strong> ¥101万㎡级别 | 园林工程+数字化一体</div>
-<strong>大运智慧公园全过程设计（龙岗，5月中标，101万㎡）</strong><p style="font-size:10px;color:var(--gry)">中标联合体：深圳园林股份（牵头）+境外设计院+华东建筑院。需求：统一智慧园林管理中台——①设备感知（无人机+土壤/水质IoT+监控）；②AI分析（植被监测+水体污染+安全隐患）；③业务管理（绿化工单+生态统计+公众游园）。短板：数字化全部外包，算法/算力/无人机外购集成，交付周期长——正是"自研软硬一体化"差异化切入点。</p><div class="bid-tags"><span class="tag tp">园林总包</span><span class="tag tb">数字化外包</span><span class="tag ta">天穹机会</span></div></div>
-
-<div class="bid-card l3"><div class="bid-meta"><strong>第三层：区/街道轻量无人机巡检</strong> ¥19万-80万 | 天穹核心目标市场</div>
-<div class="grid2" style="margin-top:8px">
-<div><strong>盐田海山街道鹏湾社区无人机巡检（5月中标，19.5万）</strong><p style="font-size:10px;color:var(--gry)">中标：智远无人机。需求：无人机全覆盖社区绿地+滨水栈道，AI识别植被枯死、湖面垃圾、设施破损。短板：仅单次巡检服务，无完整园林工单闭环、无长期绿地数据库、无弹性算力调度。客户每年需重复招标。</p></div>
-<div><strong>市城管局园林遥感监测（6月中标，20.6万）</strong><p style="font-size:10px;color:var(--gry)">中标：中地软件（GIS遥感数据商）。需求：航拍影像采集+绿地台账+AI识别缺株/黄土裸露/违建。短板：纯后端数据服务，无无人机硬件、无工单闭环，推理依赖第三方公有云。</p></div>
-</div>
-<div class="bid-tags"><span class="tag tg">天穹目标市场</span><span class="tag tb">轻量化方案</span><span class="tag ta">20-80万/项目</span></div></div>
-
-<div class="card" style="margin-top:16px"><h3>🎯 天穹智翼生态位一句话</h3><p style="font-size:12px">深圳智慧园林市场分两极：千万级大单头部硬件/园林总包垄断（重资产机巢）；街道几十万小型改造市场缺口大，但现有中标商只能做单次巡检或纯数据服务——<strong style="color:var(--grn)">天穹是唯一能交付"无人机整机+园林专属AI+轻量弹性算力+运维工单"完整闭环的深圳本地方案商，卡位20-80万街道市场。</strong></p></div>
-</div>
-
-<!-- ====== COMPETITOR ANALYSIS (NEW) ====== -->
-<div class="page" id="p-compet">
-<div class="story"><strong>📖 用户：商务决策者</strong> — 深圳智慧园林竞品分层画像，基于2026年真实中标数据分析。<div class="steps"><span>竞品分类</span><span>优势短板</span><span>竞争关系</span><span>差异化策略</span></div></div>
-<h3>🏢 竞品四层画像（基于2026年深圳真实中标数据）</h3>
-<div class="grid2">
-<div class="comp-card"><h3>🏗️ 传统园林工程类</h3><p style="font-size:10px;color:var(--gry)">深圳园林股份、国艺园林</p><div class="row"><span>大型EPC资质</span><span class="val win">强</span></div><div class="row"><span>数字化能力</span><span class="val lose">外包</span></div><div class="row"><span>自研AI</span><span class="val lose">无</span></div><div class="row"><span>竞争关系</span><span class="val mid">总包对手</span></div><p style="font-size:10px;margin-top:6px;color:var(--gry)">→ 大型项目总包竞对，但小型数字化改造无竞争力。天穹可作为其数字化分包商合作。</p></div>
-<div class="comp-card"><h3>🗺️ GIS遥感数据商</h3><p style="font-size:10px;color:var(--gry)">中地软件（6月中标20.6万）</p><div class="row"><span>绿地台账</span><span class="val win">成熟</span></div><div class="row"><span>无人机硬件</span><span class="val lose">无</span></div><div class="row"><span>工单闭环</span><span class="val lose">无</span></div><div class="row"><span>竞争关系</span><span class="val mid">数据竞争</span></div><p style="font-size:10px;margin-top:6px;color:var(--gry)">→ 只能做后端遥感数据，无法交付完整软硬一体方案。天穹补齐硬件+平台闭环。</p></div>
-<div class="comp-card"><h3>🛸 纯无人机服务集成商</h3><p style="font-size:10px;color:var(--gry)">智远无人机（5月中标19.5万）</p><div class="row"><span>巡检落地</span><span class="val win">快</span></div><div class="row"><span>园林平台</span><span class="val lose">无</span></div><div class="row"><span>AI模型</span><span class="val lose">无</span></div><div class="row"><span>竞争关系</span><span class="val mid">直接竞品</span></div><p style="font-size:10px;margin-top:6px;color:var(--gry)">→ 仅单次巡检服务，客户每年重复招标。天穹标准化平台+工单闭环=客户粘性。</p></div>
-<div class="comp-card"><h3>🏭 全自动机库头部厂商</h3><p style="font-size:10px;color:var(--gry)">高度创新、云圣智能、道通智能</p><div class="row"><span>整机机库</span><span class="val win">领先</span></div><div class="row"><span>设备成本</span><span class="val lose">高</span></div><div class="row"><span>街道适配</span><span class="val lose">差</span></div><div class="row"><span>竞争关系</span><span class="val mid">错位</span></div><p style="font-size:10px;margin-top:6px;color:var(--gry)">→ 大额项目对手，街道小型预算无法承接。天穹无重型机巢=轻量+低成本差异化。</p></div>
-</div></div>
-
-<!-- ====== ROI (NEW) ====== -->
-<div class="page" id="p-roi">
-<div class="story"><strong>📖 用户：商务决策者</strong> — 天穹轻量方案 vs 竞品方案的投入产出对比。证明自研软硬一体化在经济性上的优势。<div class="steps"><span>成本对比</span><span>AI替代人工</span><span>长期收益</span><span>客户闭环</span></div></div>
-<h3>💰 轻量化方案 vs 竞品方案 — 投入产出对比</h3>
-<table><tr><th>对比维度</th><th>天穹轻量化方案</th><th>全自动机库方案</th><th>纯巡检外包</th></tr>
-<tr><td>单项目投入</td><td><span class="tg" style="font-weight:700">20万-80万</span></td><td>50万-200万</td><td>15万-30万/次</td></tr>
-<tr><td>设备</td><td>小型多旋翼无人机(无重型机巢)</td><td>全自动机场+无人机</td><td>无自有设备</td></tr>
-<tr><td>AI能力</td><td><span class="tg">自研园林专属模型</span></td><td>通用识别模型</td><td><span class="tr">无AI能力</span></td></tr>
-<tr><td>云端算力</td><td><span class="tg">按需启动GPU，闲置关机</span></td><td>常驻GPU集群</td><td><span class="tr">依赖第三方云</span></td></tr>
-<tr><td>运维平台</td><td><span class="tg">自有工单闭环+绿地数据库</span></td><td>通用调度平台</td><td><span class="tr">无平台</span></td></tr>
-<tr><td>客户粘性</td><td><span class="tg">长期运维合同（年费）</span></td><td>一次性设备采购</td><td><span class="tr">每年重复招标</span></td></tr></table>
-
-<div class="card" style="margin-top:16px">
-<h3>📊 AI替代人工 — 效率提升测算</h3>
-<div class="grid3" style="margin-top:12px">
-<div style="text-align:center"><div style="font-size:28px;font-weight:900;color:var(--grn)">80%</div><div style="font-size:10px;color:var(--gry)">减少人工巡检时间</div></div>
-<div style="text-align:center"><div style="font-size:28px;font-weight:900;color:var(--blue)">70%</div><div style="font-size:10px;color:var(--gry)">AI自动派单率</div></div>
-<div style="text-align:center"><div style="font-size:28px;font-weight:900;color:var(--amb)">≤48h</div><div style="font-size:10px;color:var(--gry)">工单闭环时长</div></div>
-</div>
-<p style="font-size:11px;color:var(--gry);margin-top:8px"><strong>传统模式（街道社区）：</strong>2名绿化巡检员×年薪12万=年24万人力。全年人工巡检覆盖约200公顷，发现病虫害靠经验，平均响应3-5天。<br>
-<strong>天穹AI方案（同街道）：</strong>1架多旋翼无人机+云端AI+1名飞手（兼职工单派发），年成本约15万。全年覆盖500+公顷，AI实时识别，自动派单响应≤48小时。年节约人力成本40%以上，巡检覆盖提升150%。</p></div></div>
-
-<!-- ====== DATA CENTER (NEW) ====== -->
-<div class="page" id="p-datacenter">
-<div class="story"><strong>📖 用户：系统管理员 & 数据分析师</strong> — 管理12类基础数据资产，了解每类数据的来源渠道、更新频率及其在业务报告中的应用价值。数据驱动决策。<div class="steps"><span>数据总览</span><span>来源追踪</span><span>报告关联</span><span>质量监控</span></div></div>
-<div class="stats"><div class="stat"><div class="n" style="color:var(--blue)">12</div><div class="l">数据类型</div></div><div class="stat"><div class="n" style="color:var(--grn)">1,732</div><div class="l">总记录数</div></div><div class="stat"><div class="n" style="color:var(--tel)">8</div><div class="l">数据来源渠道</div></div><div class="stat"><div class="n" style="color:var(--amb)">492KB</div><div class="l">数据规模</div></div></div>
-
-<div class="tabs"><div class="tab at" onclick="st(this,'dc-inventory')">📋 数据资产清单</div><div class="tab" onclick="st(this,'dc-trees')">🌳 苗木(1000)</div><div class="tab" onclick="st(this,'dc-pests')">🪲 病虫害(100)</div><div class="tab" onclick="st(this,'dc-orders')">📋 工单(100)</div><div class="tab" onclick="st(this,'dc-drone')">📸 航拍(200)</div><div class="tab" onclick="st(this,'dc-flow')">🔄 数据流向</div></div>
-
-<div class="tbdy on" id="dc-inventory">
-<h3>📋 12类基础数据资产清单</h3>
-<table><tr><th>#</th><th>数据类型</th><th>记录数</th><th>来源渠道</th><th>更新频率</th><th>关联业务报告</th><th>对应招标需求</th></tr>
-<tr><td>1</td><td>🌿 绿地台账</td><td>5公园</td><td>市城管局绿化处年度统计</td><td>年度</td><td>绿化长势监测报表、绿地率考核、碳排放核算</td><td>市城管局遥感监测(20.6万)</td></tr>
-<tr><td>2</td><td>🌳 苗木资产</td><td>1,000棵</td><td>无人机GIS标注+人工补录</td><td>季度</td><td>植被一张图GIS、病虫害趋势、名木古树、碳汇</td><td>香蜜湖(1500万)+大运(101万㎡)</td></tr>
-<tr><td>3</td><td>🧪 土壤传感器</td><td>20点×48台</td><td>园区IoT传感器(MQTT)</td><td>30分钟</td><td>土壤健康评估、精准灌溉建议、数字孪生</td><td>香蜜湖"物联网传感器"</td></tr>
-<tr><td>4</td><td>🌤️ 气象数据</td><td>6月×小时</td><td>深圳气象局API+园区气象站</td><td>每小时</td><td>台风预警响应、高温干旱预警、灌溉计划</td><td>大运"气象数据融合"</td></tr>
-<tr><td>5</td><td>💧 灌溉系统</td><td>3公园×日</td><td>智能灌溉控制器(IoT)</td><td>实时+日汇总</td><td>水资源消耗报告、节水效益分析</td><td>香蜜湖"灌溉系统"</td></tr>
-<tr><td>6</td><td>🪲 病虫害记录</td><td>100条</td><td>AI识别自动记录+人工确认</td><td>实时</td><td>病虫害趋势月报、AI准确率评估、药剂效果</td><td>香蜜湖+盐田"病虫害识别"</td></tr>
-<tr><td>7</td><td>📋 养护工单</td><td>100条</td><td>AI自动生成+人工创建</td><td>实时</td><td>养护成本统计、工人绩效、响应时效</td><td>香蜜湖+大运"工单派发"</td></tr>
-<tr><td>8</td><td>🔍 巡检记录</td><td>80条</td><td>系统自动记录</td><td>每次巡检后</td><td>巡检覆盖率报告、问题发现率</td><td>盐田鹏湾(19.5万)</td></tr>
-<tr><td>9</td><td>📸 航拍图片</td><td>200张</td><td>无人机自动上传</td><td>每次飞行后</td><td>AI识别输入、多期对比、绿地变化</td><td>市城管局遥感+龙华一网统飞</td></tr>
-<tr><td>10</td><td>🏗️ 设施资产</td><td>120件</td><td>GIS标注+人工巡检</td><td>季度</td><td>设施健康报告、维修预算、安全隐患排查</td><td>香蜜湖"设施破损识别"</td></tr>
-<tr><td>11</td><td>🌊 水体监测</td><td>2湖区</td><td>IoT水质传感器+人工取样</td><td>2小时+周</td><td>水环境质量报告、藻类预警</td><td>香蜜湖"水体污染识别"</td></tr>
-<tr><td>12</td><td>👥 游客服务</td><td>2公园×日</td><td>闸机计数+小程序</td><td>实时+日汇总</td><td>公园承载量评估、满意度调查</td><td>香蜜湖+大运"公众智慧游园"</td></tr></table></div>
-
-<div class="tbdy" id="dc-trees"><h3>🌳 苗木资产抽样（共1,000棵）</h3><table>
-<tr><td>TREE0000</td><td>香樟</td><td>深圳湾公园</td><td>25.8</td><td><span class="tag tg">80分</span></td><td>2026-06-01</td><td><span class="tag tr">是</span></td><td>无</td></tr>
-<tr><td>TREE0001</td><td>细叶榕</td><td>莲花山公园</td><td>51.4</td><td><span class="tag tr">48分</span></td><td>2026-06-22</td><td><span class="tag tr">是</span></td><td>无</td></tr>
-<tr><td>TREE0002</td><td>凤凰木</td><td>人才公园</td><td>24.8</td><td><span class="tag tg">77分</span></td><td>2026-03-02</td><td><span class="tag tr">是</span></td><td><span class="tag ta">榕树蓟马</span></td></tr>
-<tr><td>TREE0003</td><td>黄花风铃木</td><td>香蜜湖公园</td><td>64.6</td><td><span class="tag tg">78分</span></td><td>2026-06-18</td><td>否</td><td><span class="tag ta">蚜虫</span></td></tr>
-<tr><td>TREE0004</td><td>大叶紫薇</td><td>大运公园</td><td>73.8</td><td><span class="tag ta">66分</span></td><td>2026-05-15</td><td>否</td><td>无</td></tr>
-<tr><td>TREE0005</td><td>美丽异木棉</td><td>深圳湾公园</td><td>28.6</td><td><span class="tag tr">40分</span></td><td>2026-05-23</td><td>否</td><td>无</td></tr>
-<tr><td>TREE0006</td><td>秋枫</td><td>莲花山公园</td><td>35.5</td><td><span class="tag ta">53分</span></td><td>2026-04-04</td><td>否</td><td><span class="tag ta">榕树蓟马</span></td></tr>
-<tr><td>TREE0007</td><td>宫粉紫荆</td><td>人才公园</td><td>67.0</td><td><span class="tag ta">62分</span></td><td>2026-01-09</td><td>否</td><td>无</td></tr>
-<tr><td>TREE0008</td><td>蒲葵</td><td>香蜜湖公园</td><td>75.5</td><td><span class="tag tg">74分</span></td><td>2026-05-13</td><td>否</td><td><span class="tag ta">樟巢螟</span></td></tr>
-<tr><td>TREE0009</td><td>大王椰子</td><td>大运公园</td><td>8.9</td><td><span class="tag tg">79分</span></td><td>2026-03-19</td><td>否</td><td><span class="tag ta">榕树蓟马</span></td></tr>
-<tr><td>TREE0010</td><td>香樟</td><td>深圳湾公园</td><td>78.7</td><td><span class="tag ta">54分</span></td><td>2026-04-03</td><td>否</td><td>无</td></tr>
-<tr><td>TREE0011</td><td>细叶榕</td><td>莲花山公园</td><td>36.0</td><td><span class="tag ta">64分</span></td><td>2026-04-15</td><td>否</td><td>无</td></tr>
-<tr><td>TREE0012</td><td>凤凰木</td><td>人才公园</td><td>64.7</td><td><span class="tag ta">63分</span></td><td>2026-03-07</td><td>否</td><td>无</td></tr>
-<tr><td>TREE0013</td><td>黄花风铃木</td><td>香蜜湖公园</td><td>19.5</td><td><span class="tag tg">83分</span></td><td>2026-01-03</td><td>否</td><td>无</td></tr>
-<tr><td>TREE0014</td><td>大叶紫薇</td><td>大运公园</td><td>27.9</td><td><span class="tag tg">86分</span></td><td>2026-04-06</td><td>否</td><td>无</td></tr>
-
-</table></div>
-
-<div class="tbdy" id="dc-pests"><h3>🪲 病虫害记录（共100条，展示最新20条）</h3><table>
-<tr><td>P0000</td><td>榕树蓟马</td><td>深圳湾公园</td><td>2026-03-04</td><td><span class="tag tr">重度</span></td><td>44株</td><td>阿维菌素578倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0001</td><td>樟巢螟</td><td>香蜜湖公园</td><td>2026-03-18</td><td><span class="tag ta">中度</span></td><td>6株</td><td>吡虫啉1183倍</td><td><span class="tag tb">待处置</span></td></tr>
-<tr><td>P0002</td><td>白粉病</td><td>莲花山公园</td><td>2026-01-20</td><td><span class="tag tr">重度</span></td><td>48株</td><td>阿维菌素1273倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0003</td><td>天牛幼虫</td><td>深圳湾公园</td><td>2026-01-02</td><td><span class="tag tr">重度</span></td><td>43株</td><td>阿维菌素689倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0004</td><td>椰心叶甲</td><td>莲花山公园</td><td>2026-03-14</td><td><span class="tag tr">重度</span></td><td>49株</td><td>吡虫啉1674倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0005</td><td>红火蚁</td><td>香蜜湖公园</td><td>2026-03-11</td><td><span class="tag tr">重度</span></td><td>46株</td><td>吡虫啉1568倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0006</td><td>蚜虫</td><td>香蜜湖公园</td><td>2026-05-19</td><td><span class="tag tr">重度</span></td><td>39株</td><td>三唑酮1145倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0007</td><td>介壳虫</td><td>深圳湾公园</td><td>2026-06-20</td><td><span class="tag tb">轻度</span></td><td>18株</td><td>三唑酮1495倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0008</td><td>炭疽病</td><td>大运公园</td><td>2026-01-16</td><td><span class="tag ta">中度</span></td><td>6株</td><td>三唑酮1847倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0009</td><td>锈病</td><td>人才公园</td><td>2026-04-03</td><td><span class="tag tr">重度</span></td><td>30株</td><td>三唑酮1980倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0010</td><td>榕树蓟马</td><td>香蜜湖公园</td><td>2026-06-12</td><td><span class="tag tb">轻度</span></td><td>19株</td><td>吡虫啉526倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0011</td><td>樟巢螟</td><td>人才公园</td><td>2026-03-16</td><td><span class="tag ta">中度</span></td><td>2株</td><td>三唑酮1790倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0012</td><td>白粉病</td><td>莲花山公园</td><td>2026-04-25</td><td><span class="tag tb">轻度</span></td><td>18株</td><td>阿维菌素1444倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0013</td><td>天牛幼虫</td><td>深圳湾公园</td><td>2026-01-09</td><td><span class="tag tr">重度</span></td><td>34株</td><td>吡虫啉1220倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0014</td><td>椰心叶甲</td><td>人才公园</td><td>2026-05-12</td><td><span class="tag tb">轻度</span></td><td>20株</td><td>吡虫啉1948倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0015</td><td>红火蚁</td><td>深圳湾公园</td><td>2026-05-13</td><td><span class="tag tr">重度</span></td><td>48株</td><td>吡虫啉650倍</td><td><span class="tag ta">处置中</span></td></tr>
-<tr><td>P0016</td><td>蚜虫</td><td>大运公园</td><td>2026-01-25</td><td><span class="tag ta">中度</span></td><td>9株</td><td>阿维菌素1650倍</td><td><span class="tag tb">待处置</span></td></tr>
-<tr><td>P0017</td><td>介壳虫</td><td>人才公园</td><td>2026-01-23</td><td><span class="tag ta">中度</span></td><td>6株</td><td>阿维菌素1890倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0018</td><td>炭疽病</td><td>莲花山公园</td><td>2026-04-18</td><td><span class="tag ta">中度</span></td><td>2株</td><td>三唑酮1127倍</td><td><span class="tag tg">已处置</span></td></tr>
-<tr><td>P0019</td><td>锈病</td><td>莲花山公园</td><td>2026-02-18</td><td><span class="tag tb">轻度</span></td><td>13株</td><td>阿维菌素1191倍</td><td><span class="tag tg">已处置</span></td></tr>
-
-</table></div>
-
-<div class="tbdy" id="dc-orders"><h3>📋 养护工单（共100条，展示最新15条）</h3><table>
-<tr><td>WO-0000</td><td>病虫害处置</td><td>深圳湾公园</td><td>2026-04-13</td><td><span class="tag tr">高</span></td><td>陈师傅</td><td>¥2704</td><td><span class="tag tb">待派发</span></td><td>-</td></tr>
-<tr><td>WO-0001</td><td>枯木清理</td><td>莲花山公园</td><td>2026-05-04</td><td><span class="tag tr">高</span></td><td>刘师傅</td><td>¥1387</td><td><span class="tag tg">已完成</span></td><td>5★</td></tr>
-<tr><td>WO-0002</td><td>修剪</td><td>人才公园</td><td>2026-01-16</td><td><span class="tag tr">高</span></td><td>张师傅</td><td>¥2899</td><td><span class="tag tg">已完成</span></td><td>3★</td></tr>
-<tr><td>WO-0003</td><td>补种</td><td>香蜜湖公园</td><td>2026-02-05</td><td><span class="tag tr">高</span></td><td>王师傅</td><td>¥828</td><td><span class="tag tg">已完成</span></td><td>4★</td></tr>
-<tr><td>WO-0004</td><td>灌溉维修</td><td>深圳湾公园</td><td>2026-05-20</td><td><span class="tag tr">高</span></td><td>陈师傅</td><td>¥2257</td><td><span class="tag tg">已完成</span></td><td>4★</td></tr>
-<tr><td>WO-0005</td><td>设施维修</td><td>莲花山公园</td><td>2026-05-18</td><td><span class="tag ta">中</span></td><td>刘师傅</td><td>¥2910</td><td><span class="tag tb">待派发</span></td><td>-</td></tr>
-<tr><td>WO-0006</td><td>湖面清洁</td><td>人才公园</td><td>2026-03-03</td><td><span class="tag ta">中</span></td><td>张师傅</td><td>¥2392</td><td><span class="tag ta">处置中</span></td><td>-</td></tr>
-<tr><td>WO-0007</td><td>施肥</td><td>香蜜湖公园</td><td>2026-06-24</td><td><span class="tag ta">中</span></td><td>王师傅</td><td>¥1323</td><td><span class="tag ta">处置中</span></td><td>-</td></tr>
-<tr><td>WO-0008</td><td>病虫害处置</td><td>深圳湾公园</td><td>2026-02-12</td><td><span class="tag ta">中</span></td><td>陈师傅</td><td>¥578</td><td><span class="tag tb">待派发</span></td><td>-</td></tr>
-<tr><td>WO-0009</td><td>枯木清理</td><td>莲花山公园</td><td>2026-06-21</td><td><span class="tag tb">低</span></td><td>刘师傅</td><td>¥1568</td><td><span class="tag tg">已完成</span></td><td>3★</td></tr>
-<tr><td>WO-0010</td><td>修剪</td><td>人才公园</td><td>2026-03-26</td><td><span class="tag tb">低</span></td><td>张师傅</td><td>¥1272</td><td><span class="tag tg">已完成</span></td><td>3★</td></tr>
-<tr><td>WO-0011</td><td>补种</td><td>香蜜湖公园</td><td>2026-06-13</td><td><span class="tag tb">低</span></td><td>王师傅</td><td>¥415</td><td><span class="tag tb">待派发</span></td><td>-</td></tr>
-<tr><td>WO-0012</td><td>灌溉维修</td><td>深圳湾公园</td><td>2026-05-19</td><td><span class="tag tb">低</span></td><td>陈师傅</td><td>¥1943</td><td><span class="tag tg">已完成</span></td><td>5★</td></tr>
-<tr><td>WO-0013</td><td>设施维修</td><td>莲花山公园</td><td>2026-04-18</td><td><span class="tag tb">低</span></td><td>刘师傅</td><td>¥546</td><td><span class="tag ta">处置中</span></td><td>-</td></tr>
-<tr><td>WO-0014</td><td>湖面清洁</td><td>人才公园</td><td>2026-02-09</td><td><span class="tag tb">低</span></td><td>张师傅</td><td>¥2588</td><td><span class="tag tg">已完成</span></td><td>4★</td></tr>
-
-</table></div>
-
-<div class="tbdy" id="dc-drone"><h3>📸 航拍图片元数据（共200张，展示最新15张）</h3><table>
-<tr><td>IMG00000</td><td>DJI-M300</td><td>2026-06-16 17:00</td><td>100</td><td><span class="tag tg">是</span></td><td><span class="tag tg">正常</span></td></tr>
-<tr><td>IMG00001</td><td>DJI-M300</td><td>2026-06-13 14:00</td><td>79</td><td><span class="tag tg">是</span></td><td><span class="tag ta">黄土裸露1处</span></td></tr>
-<tr><td>IMG00002</td><td>DJI-M300</td><td>2026-06-17 09:00</td><td>98</td><td><span class="tag tg">是</span></td><td><span class="tag ta">虫害1处</span></td></tr>
-<tr><td>IMG00003</td><td>DJI-M300</td><td>2026-06-12 10:00</td><td>79</td><td><span class="tag tr">否</span></td><td><span class="tag tb">-</span></td></tr>
-<tr><td>IMG00004</td><td>DJI-M300</td><td>2026-06-07 10:00</td><td>95</td><td><span class="tag tr">否</span></td><td><span class="tag tb">-</span></td></tr>
-<tr><td>IMG00005</td><td>DJI-M300</td><td>2026-06-13 13:00</td><td>99</td><td><span class="tag tg">是</span></td><td><span class="tag ta">黄土裸露1处</span></td></tr>
-<tr><td>IMG00006</td><td>DJI-M300</td><td>2026-06-06 19:00</td><td>102</td><td><span class="tag tr">否</span></td><td><span class="tag tb">-</span></td></tr>
-<tr><td>IMG00007</td><td>DJI-M300</td><td>2026-06-14 07:00</td><td>113</td><td><span class="tag tg">是</span></td><td><span class="tag ta">黄土裸露1处</span></td></tr>
-<tr><td>IMG00008</td><td>DJI-Mavic3</td><td>2026-06-15 07:00</td><td>73</td><td><span class="tag tg">是</span></td><td><span class="tag tg">正常</span></td></tr>
-<tr><td>IMG00009</td><td>DJI-Mavic3</td><td>2026-06-08 09:00</td><td>67</td><td><span class="tag tg">是</span></td><td><span class="tag ta">黄土裸露1处</span></td></tr>
-<tr><td>IMG00010</td><td>DJI-Mavic3</td><td>2026-06-04 13:00</td><td>113</td><td><span class="tag tg">是</span></td><td><span class="tag tb">无异常</span></td></tr>
-<tr><td>IMG00011</td><td>DJI-Mavic3</td><td>2026-06-01 13:00</td><td>116</td><td><span class="tag tr">否</span></td><td><span class="tag tb">-</span></td></tr>
-<tr><td>IMG00012</td><td>DJI-Mavic3</td><td>2026-06-11 07:00</td><td>93</td><td><span class="tag tg">是</span></td><td><span class="tag ta">虫害1处</span></td></tr>
-<tr><td>IMG00013</td><td>DJI-Mavic3</td><td>2026-06-04 17:00</td><td>111</td><td><span class="tag tr">否</span></td><td><span class="tag tb">-</span></td></tr>
-<tr><td>IMG00014</td><td>DJI-Mavic3</td><td>2026-06-18 08:00</td><td>72</td><td><span class="tag tg">是</span></td><td><span class="tag ta">枯黄3处</span></td></tr>
-
-</table></div>
-
-<div class="tbdy" id="dc-flow">
-<h3>🔄 数据流向 — 从数据采集到业务价值</h3>
-<div class="grid2">
-<div class="card"><h3>📥 数据采集层（8个来源渠道）</h3>
-<p style="font-size:10px;color:var(--gry);line-height:2">
-① <strong>IoT传感器(MQTT)</strong> → 土壤/灌溉/水质<br>
-② <strong>无人机自动上传</strong> → 航拍图片+GPS元数据<br>
-③ <strong>深圳气象局API</strong> → 天气/台风预警<br>
-④ <strong>市城管局年度统计</strong> → 绿地台账<br>
-⑤ <strong>GIS标注+人工补录</strong> → 苗木资产+设施<br>
-⑥ <strong>AI识别自动记录</strong> → 病虫害+异常事件<br>
-⑦ <strong>小程序+Web操作</strong> → 工单+巡检记录<br>
-⑧ <strong>闸机+小程序扫码</strong> → 游客数据</p></div>
-<div class="card"><h3>📊 业务报告层（12份报告）</h3>
-<p style="font-size:10px;color:var(--gry);line-height:2">
-① 年度绿化长势监测报表 ← 绿地台账+航拍<br>
-② 病虫害趋势月报 ← 病虫害记录+气象<br>
-③ 植被一张图GIS ← 苗木资产+航拍<br>
-④ 养护成本统计 ← 工单记录<br>
-⑤ 巡检覆盖率报告 ← 巡检记录+航拍<br>
-⑥ 水资源消耗报告 ← 灌溉系统<br>
-⑦ 土壤健康评估 ← 土壤传感器<br>
-⑧ 设施健康报告 ← 设施资产+AI识别<br>
-⑨ 水环境质量报告 ← 水体监测<br>
-⑩ 公园承载量评估 ← 游客数据<br>
-⑪ AI模型准确率评估 ← 病虫害记录+人工标注<br>
-⑫ 碳汇计算报告 ← 苗木资产+绿地台账</p></div>
-</div>
-<div class="card" style="margin-top:12px"><h3>🔗 数据驱动业务流程闭环</h3>
-<p style="font-size:11px;line-height:2">
-<strong>数据采集</strong>（IoT传感器+无人机+气象API）→ <strong>AI分析</strong>（病虫害识别+异常检测+趋势预测）→ <strong>工单生成</strong>（自动派发+处置建议）→ <strong>人工处置</strong>（养护工人现场作业+反馈）→ <strong>数据回流</strong>（处置结果更新数据库+修正AI模型）→ <strong>报告输出</strong>（生成12份业务报告提交园林局）。<br>
-<strong style="color:var(--green)">关键指标：</strong>数据从采集到AI分析完成 ≤15分钟；AI自动派单率 ≥70%；工单闭环 ≤48小时；月度报告自动生成率 100%。</p></div>
-</div>
-</div>
-
-</div></div>
 
 <script>
-function nv(el,page){
-  document.querySelectorAll('.side nav a').forEach(a=>a.classList.remove('at'));el.classList.add('at')
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'))
-  document.getElementById('p-'+page).classList.add('on')
-  document.getElementById('pt').textContent={'dash':'📊 工作台','kb':'📚 AI知识库','ai':'🔍 AI视觉识别','drone':'🛸 无人机调度','task':'📋 工单养护','gis':'🗺️ GIS大屏','tech':'⚙️ 技术对接','market':'📈 市场洞察','compet':'🏢 竞品分层','roi':'💰 ROI对比','datacenter':'🗄️ 数据中心'}[page]
+let currentRole='admin';
+const roleNames={admin:'公园管理员',pilot:'巡检飞手',worker:'养护工人',engineer:'AI工程师',leader:'公园领导'};
+const roleAvatars={admin:'👤',pilot:'🛸',worker:'🔧',engineer:'🧠',leader:'📊'};
+
+// ===== SHENZHEN BAY PARK REAL DATA =====
+const parkData={name:'深圳湾公园',areaHa:108,trees:1247,grassHa:42.3,waterHa:15,zones:['A区·红树林保护区','B区·滨海步道区','C区·运动公园区','湖区·内湖水域'],facts:{facilities:230,annualVisitors:4500000,greenCoverage:78.5,coastlineKm:13}};
+
+const alerts=[{t:'香樟枯黄异常(3株)',l:'A区红树林步道',lv:'高',tm:'10分钟前',s:'tr'},{t:'榕树蓟马虫害',l:'B区滨海广场',lv:'中',tm:'1小时前',s:'ta'},{t:'湖面漂浮垃圾',l:'湖区·南侧水域',lv:'中',tm:'2小时前',s:'ta'},{t:'草坪斑秃检测',l:'C区运动草坪',lv:'低',tm:'3小时前',s:'tb'}];
+
+const pests=[{id:'P001',type:'榕树蓟马',zone:'B区',date:'07-24',severity:'重度',affected:35,treatment:'吡虫啉1500倍+修剪虫瘿',status:'处置中',by:'陈师傅'},{id:'P002',type:'樟巢螟',zone:'A区',date:'07-22',severity:'中度',affected:18,treatment:'阿维菌素2000倍+摘除虫巢',status:'已处置',by:'刘师傅'},{id:'P003',type:'白粉病',zone:'C区',date:'07-20',severity:'轻度',affected:8,treatment:'三唑酮1000倍+清除病叶',status:'已验收',by:'张师傅'},{id:'P004',type:'天牛幼虫',zone:'A区',date:'07-18',severity:'重度',affected:5,treatment:'敌敌畏注入+钩杀',status:'已处置',by:'陈师傅'},{id:'P005',type:'红火蚁',zone:'C区',date:'07-15',severity:'中度',affected:12,treatment:'饵剂诱杀+灌巢',status:'已验收',by:'刘师傅'}];
+
+const tasks=[{id:'WO-001',type:'病虫害处置',detail:'榕树蓟马·喷施吡虫啉',zone:'B区',priority:'高',worker:'陈师傅',status:'处置中',cost:850},{id:'WO-002',type:'枯木清理',detail:'香樟3株·检查+追肥',zone:'A区',priority:'高',worker:'刘师傅',status:'待派发',cost:1200},{id:'WO-003',type:'湖面清洁',detail:'漂浮垃圾·安排保洁船',zone:'湖区',priority:'中',worker:'张师傅',status:'待派发',cost:300},{id:'WO-004',type:'设施维修',detail:'步道护栏破损·更换',zone:'B区',priority:'中',worker:'王师傅',status:'处置中',cost:560},{id:'WO-005',type:'草坪修复',detail:'斑秃30㎡补种草皮',zone:'C区',priority:'低',worker:'李师傅',status:'待验收',cost:420}];
+
+const trees=[{id:'T001',sp:'细叶榕',zone:'A区',dbh:85.3,height:18.5,age:120,health:92,gps:'22.5431,113.9412'},{id:'T002',sp:'香樟',zone:'A区',dbh:62.1,height:15.2,age:55,health:78,gps:'22.5438,113.9428'},{id:'T003',sp:'凤凰木',zone:'B区',dbh:45.2,height:12.8,age:20,health:85,gps:'22.5452,113.9435'},{id:'T004',sp:'大王椰子',zone:'B区',dbh:35.1,height:16.0,age:12,health:95,gps:'22.5460,113.9442'},{id:'T005',sp:'黄花风铃木',zone:'C区',dbh:28.4,height:8.2,age:8,health:88,gps:'22.5475,113.9450'},{id:'T006',sp:'大叶紫薇',zone:'C区',dbh:32.6,height:9.5,age:15,health:72,gps:'22.5482,113.9458'},{id:'T007',sp:'秋枫',zone:'A区',dbh:55.8,height:14.1,age:65,health:85,gps:'22.5440,113.9418'},{id:'T008',sp:'美丽异木棉',zone:'B区',dbh:38.2,height:10.5,age:10,health:90,gps:'22.5458,113.9430'}];
+
+// ===== LOGIN =====
+function selRole(el,role){currentRole=role;document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('sel'));el.classList.add('sel')}
+function doLogin(){document.getElementById('loginPage').style.display='none';document.getElementById('appMain').classList.add('on');buildSidebar();navTo(routes[currentRole][0])}
+function doLogout(){if(confirm('确定退出？')){document.getElementById('appMain').classList.remove('on');document.getElementById('loginPage').style.display='flex'}}
+
+// ===== ROUTES =====
+const routes={admin:['dash','inspect','tasks','trees','gis'],pilot:['dash','inspect'],worker:['dash','tasks'],engineer:['dash','inspect','trees'],leader:['gis','dash']};
+const menuNames={dash:'📊 工作台',inspect:'🛸 AI巡检',tasks:'📋 工单养护',trees:'🌳 苗木档案',gis:'🗺️ GIS大屏'};
+const pageTitles={dash:'📊 工作台',inspect:'🛸 AI巡检',tasks:'📋 工单养护',trees:'🌳 苗木档案',gis:'🗺️ GIS大屏'};
+const pageSubs={dash:'今日全园关键指标与待处理事项',inspect:'无人机巡检任务与AI识别结果',tasks:'工单派发·处置·验收闭环',trees:'1247棵乔木数字化档案',gis:'全园态势一屏总览'};
+
+function buildSidebar(){
+  let nav='';const r=routes[currentRole];
+  for(let p of r)nav+=`<a href="#" class="${p===r[0]?'at':''}" data-p="${p}" onclick="navTo('${p}',this)">${menuNames[p]}</a>`;
+  document.getElementById('sidebarNav').innerHTML=nav;
+  document.getElementById('userName').textContent=roleNames[currentRole];
+  document.getElementById('userAvatar').textContent=roleAvatars[currentRole];
 }
-function st(el,id){
-  const p=el.parentElement.parentElement
-  p.querySelectorAll('.tab').forEach(t=>t.classList.remove('at'));el.classList.add('at')
-  p.querySelectorAll('.tbdy').forEach(b=>b.classList.remove('on'))
-  document.getElementById(id).classList.add('on')
+
+function navTo(page,el){
+  if(el){document.querySelectorAll('#sidebarNav a').forEach(a=>a.classList.remove('at'));el.classList.add('at')}
+  document.getElementById('pageTitle').textContent=pageTitles[page];
+  document.getElementById('headerSub').textContent=pageSubs[page];
+  document.getElementById('pageContent').innerHTML=renderPage(page);
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('at'));
+  document.querySelectorAll('.tab-body').forEach(b=>b.classList.remove('on'));
 }
+
+// ===== PAGE RENDERERS =====
+function renderPage(page){
+  if(page==='dash')return renderDash();
+  if(page==='inspect')return renderInspect();
+  if(page==='tasks')return renderTasks();
+  if(page==='trees')return renderTrees();
+  if(page==='gis')return renderGis();
+}
+
+function renderDash(){
+  let ahtml='';for(let a of alerts)ahtml+=`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--brd)"><div style="flex:1"><strong style="font-size:11px">${a.t}</strong><br><span style="font-size:10px;color:var(--g)">${a.l} · ${a.tm}</span></div><span class="tag ${a.s}">${a.lv}</span></div>`;
+  return `<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">${parkData.trees}</div><div class="l">在管乔木(棵)</div></div><div class="stat"><div class="n" style="color:var(--red)">${alerts.length}</div><div class="l">今日告警</div></div><div class="stat"><div class="n" style="color:var(--b)">${tasks.filter(t=>t.status!=='已验收').length}</div><div class="l">进行中工单</div></div><div class="stat"><div class="n" style="color:var(--tel)">${parkData.greenCoverage}%</div><div class="l">绿地覆盖率</div></div></div>
+<div class="grid2"><div class="card"><h3>📋 待处理告警</h3><div style="margin-top:8px">${ahtml}</div></div><div class="card"><h3>🛸 今日巡检</h3><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">A区</span><div class="trk"><div class="fl" style="width:90%"></div></div><span style="font-size:9px;color:var(--g)">90%</span></div><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">B区</span><div class="trk"><div class="fl" style="width:65%"></div></div><span style="font-size:9px;color:var(--g)">65%</span></div><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">C区</span><div class="trk"><div class="fl" style="width:40%"></div></div><span style="font-size:9px;color:var(--g)">40%</span></div><div class="bar" style="margin:10px 0"><span style="font-size:10px;min-width:55px">湖区</span><div class="trk"><div class="fl" style="width:20%"></div></div><span style="font-size:9px;color:var(--g)">20%</span></div></div></div>
+<div class="card"><h3>📊 本月病虫害趋势</h3><table><tr><th>病虫害</th><th>本月</th><th>上月</th><th>趋势</th><th>主要区域</th></tr><tr><td>榕树蓟马</td><td>23处</td><td>15处</td><td><span class="tag tr">↑53%</span></td><td>B区滨海广场</td></tr><tr><td>樟巢螟</td><td>12处</td><td>8处</td><td><span class="tag ta">↑50%</span></td><td>A区红树林步道</td></tr><tr><td>白粉病</td><td>6处</td><td>11处</td><td><span class="tag tg">↓45%</span></td><td>C区运动草坪</td></tr></table></div>`;
+}
+
+function renderInspect(){
+  let ihtml='';for(let p of pests)ihtml+=`<tr><td>${p.id}</td><td>${p.type}</td><td>${p.zone}</td><td>${p.date}</td><td><span class="tag ${p.severity==='重度'?'tr':p.severity==='中度'?'ta':'tb'}">${p.severity}</span></td><td>${p.affected}株</td><td>${p.treatment}</td><td><span class="tag ${p.status==='已验收'?'tg':p.status==='已处置'?'tb':'ta'}">${p.status}</span></td><td>${p.by||'-'}</td></tr>`;
+  return `<div class="tabs"><div class="tab at" onclick="switchTab(this,'ins-list')">📋 识别记录</div><div class="tab" onclick="switchTab(this,'ins-drone')">🛸 飞行任务</div><div class="tab" onclick="switchTab(this,'ins-upload')">📸 航拍上传</div></div>
+<div class="tab-body on" id="ins-list"><table><tr><th>ID</th><th>类型</th><th>区域</th><th>发现日期</th><th>严重度</th><th>影响</th><th>处置方案</th><th>状态</th><th>处置人</th></tr>${ihtml}</table></div>
+<div class="tab-body" id="ins-drone"><div class="card"><h3>📋 今日飞行任务</h3><table><tr><th>任务</th><th>区域</th><th>飞手</th><th>状态</th><th>进度</th></tr><tr><td>A区红树林常规巡检</td><td>A区</td><td>张建国</td><td><span class="tag tb">飞行中</span></td><td><div class="bar"><div class="trk"><div class="fl" style="width:90%"></div></div></div></td></tr><tr><td>B区滨海步道巡检</td><td>B区</td><td>李明辉</td><td><span class="tag tg">已完成</span></td><td>100%</td></tr><tr><td>C区运动公园巡检</td><td>C区</td><td>王伟强</td><td><span class="tag ta">待起飞</span></td><td>0%</td></tr></table></div></div>
+<div class="tab-body" id="ins-upload"><div class="drone-box" onclick="this.innerHTML='<div class=\\'card\\' style=\\'background:#f0fdf4;border-color:var(--grn)\\'>'+'<h3 style=\\'color:var(--grn)\\'>✅ AI识别完成</h3>'+'<table style=\\'margin-top:8px\\'><tr><th>检测项</th><th>结果</th><th>置信度</th></tr>'+'<tr><td>枯死/枯黄</td><td>A区香樟3株异常</td><td>94.2%</td></tr>'+'<tr><td>虫害识别</td><td>榕树蓟马(B区)</td><td>87.5%</td></tr>'+'<tr><td>湖面垃圾</td><td>湖区南侧2处</td><td>83.1%</td></tr>'+'<tr><td>黄土裸露</td><td>C区草坪·30㎡</td><td>91.0%</td></tr></table>'+'<div style=\\'margin-top:10px\\'><button class=\\'btn bg bs\\' onclick=\\'event.stopPropagation()\\'>生成工单</button> <button class=\\'btn bo bs\\' onclick=\\'event.stopPropagation()\\'>重新上传</button></div></div>'"><div style="font-size:36px">📸</div><p style="color:var(--g);font-size:12px">点击上传无人机航拍图片（模拟）</p></div></div>`;
+}
+
+function renderTasks(){
+  let thtml='';for(let t of tasks)thtml+=`<tr><td>${t.id}</td><td>${t.detail.split('·')[0]}</td><td>${t.zone}</td><td><span class="tag ${t.priority==='高'?'tr':t.priority==='中'?'ta':'tb'}">${t.priority}</span></td><td>${t.worker||'-'}</td><td>¥${t.cost}</td><td><span class="tag ${t.status==='已验收'?'tg':t.status==='已处置'?'tb':t.status==='处置中'?'ta':'tr'}">${t.status}</span></td><td>${currentRole==='admin'&&t.status==='待派发'?'<button class="btn bp bs">派单</button>':currentRole==='worker'&&t.status==='处置中'?'<button class="btn bg bs">完成处置</button>':'-'}</td></tr>`;
+  return `<div class="tabs"><div class="tab at" onclick="switchTab(this,'task-all')">全部工单</div><div class="tab" onclick="switchTab(this,'task-my')">${currentRole==='worker'?'我的工单':'待处理'}</div></div>
+<div class="tab-body on" id="task-all"><table><tr><th>工单</th><th>类型</th><th>区域</th><th>优先级</th><th>工人</th><th>费用</th><th>状态</th><th>操作</th></tr>${thtml}</table></div>
+<div class="tab-body" id="task-my"><table><tr><th>工单</th><th>类型</th><th>区域</th><th>优先级</th><th>费用</th><th>状态</th><th>操作</th></tr>${tasks.filter(t=>t.status!=='已验收').slice(0,3).map(t=>`<tr><td>${t.id}</td><td>${t.detail.split('·')[0]}</td><td>${t.zone}</td><td><span class="tag ${t.priority==='高'?'tr':t.priority==='中'?'ta':'tb'}">${t.priority}</span></td><td>¥${t.cost}</td><td><span class="tag ${t.status==='处置中'?'ta':'tr'}">${t.status}</span></td><td>${currentRole==='worker'?'<button class="btn bg bs">处置</button>':'<button class="btn bp bs">派单</button>'}</td></tr>`).join('')}</table></div>`;
+}
+
+function renderTrees(){
+  let thtml='';for(let t of trees)thtml+=`<tr><td>${t.id}</td><td>${t.sp}</td><td>${t.zone}</td><td>${t.dbh}cm</td><td>${t.height}m</td><td>${t.age}年</td><td><span class="tag ${t.health>=85?'tg':t.health>=70?'ta':'tr'}">${t.health}分</span></td><td>${t.gps}</td></tr>`;
+  return `<div class="stats"><div class="stat"><div class="n" style="color:var(--grn)">${parkData.trees}</div><div class="l">乔木总数</div></div><div class="stat"><div class="n" style="color:var(--b)">20</div><div class="l">树种</div></div><div class="stat"><div class="n" style="color:var(--tel)">82</div><div class="l">平均健康分</div></div><div class="stat"><div class="n" style="color:var(--amb)">3</div><div class="l">古树名木</div></div></div>
+<div class="map-box">🌳 深圳湾公园 · 1247棵乔木GIS分布图 · 4个区域标注</div>
+<div class="card" style="margin-top:14px"><h3>📋 苗木档案（抽样8棵/共1247棵）</h3><table><tr><th>编号</th><th>树种</th><th>区域</th><th>胸径</th><th>树高</th><th>树龄</th><th>健康</th><th>GPS</th></tr>${thtml}</table></div>`;
+}
+
+function renderGis(){
+  return `<div class="map-box" style="height:500px">🗺️ 深圳湾公园 · GIS态势大屏<br><span style="font-size:14px;color:var(--g);font-weight:400;margin-top:8px">108公顷 · 13公里海岸线 · 4区 · 1247棵乔木</span></div>
+<div class="grid3" style="margin-top:14px"><div class="stat"><div class="n" style="color:var(--grn)">${parkData.trees}</div><div class="l">乔木已建档</div></div><div class="stat"><div class="n" style="color:var(--red)">${alerts.length}</div><div class="l">实时告警</div></div><div class="stat"><div class="n" style="color:var(--b)">${Math.round(parkData.areaHa*parkData.greenCoverage/100)}ha</div><div class="l">绿地面积</div></div></div>
+<div class="card"><h3>🏛️ 古树名木专项</h3><table><tr><th>编号</th><th>树种</th><th>树龄</th><th>位置</th><th>健康</th></tr><tr><td>AG-001</td><td>细叶榕</td><td>120年</td><td>A区古榕广场</td><td><span class="tag tg">92分</span></td></tr><tr><td>AG-002</td><td>秋枫</td><td>65年</td><td>A区红树林道</td><td><span class="tag tg">85分</span></td></tr><tr><td>AG-003</td><td>香樟</td><td>80年</td><td>B区滨海广场</td><td><span class="tag ta">78分</span></td></tr></table></div>`;
+}
+
+// ===== TAB SWITCH =====
+function switchTab(el,id){const p=el.parentElement.parentElement;p.querySelectorAll('.tab').forEach(t=>t.classList.remove('at'));el.classList.add('at');p.querySelectorAll('.tab-body').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on')}
+
+// ===== INIT =====
+buildSidebar();navTo(routes.admin[0]);
 </script>
 </body>
 </html>
