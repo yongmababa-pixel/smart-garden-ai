@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Smart Garden AI — 智慧园林AI平台</title>
+<style>
+:root{--blue:#2563eb;--blue2:#1d4ed8;--dark:#0f172a;--d2:#1e293b;--gray:#64748b;--light:#f8fafc;--white:#fff;--green:#059669;--amber:#d97706;--red:#dc2626;--border:#e2e8f0;--teal:#0d9488;--font:system-ui,-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);color:var(--d2);background:var(--white);overflow-x:hidden}
+h2{font-size:30px;font-weight:800;color:var(--dark);text-align:center;margin-bottom:8px}
+h3{font-size:18px;font-weight:700;margin:8px 0}
+.section-sub{text-align:center;color:var(--gray);font-size:15px;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+section{padding:80px 20px;max-width:1200px;margin:0 auto}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .3s;background:transparent}
+nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+nav .logo{font-size:20px;font-weight:800;color:var(--white);display:flex;align-items:center;gap:8px}
+nav.scrolled .logo{color:var(--dark)}
+nav .logo span{color:var(--green)}
+nav .links{display:flex;gap:28px;list-style:none}
+nav .links a{text-decoration:none;color:rgba(255,255,255,.85);font-size:14px;font-weight:500;transition:color .2s}
+nav.scrolled .links a{color:var(--gray)}
+nav .links a:hover{color:var(--green)}
+nav .btn-nav{padding:8px 20px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+nav .btn-nav:hover{background:#047857}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 40%,#2563eb 100%);padding:140px 20px 100px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.3),transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(5,150,105,.2),transparent 70%);border-radius:50%}
+.hero h1{font-size:48px;font-weight:900;color:#fff;max-width:800px;margin:0 auto 16px;position:relative;z-index:1;line-height:1.2}
+.hero h1 span{color:#34d399}
+.hero p{font-size:17px;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto 32px;position:relative;z-index:1;line-height:1.6}
+.hero .hero-btns{display:flex;gap:14px;justify-content:center;position:relative;z-index:1}
+.hero .btn-p{padding:14px 32px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none}
+.hero .btn-p:hover{background:#047857;transform:translateY(-2px)}
+.hero .btn-o{padding:14px 32px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none}
+.hero .btn-o:hover{border-color:#fff;transform:translateY(-2px)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:-60px;position:relative;z-index:2}
+.stats .stat{background:#fff;border-radius:16px;padding:28px 20px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.08);transition:all .3s}
+.stats .stat:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.stats .num{font-size:36px;font-weight:900;color:var(--blue);margin-bottom:4px}
+.stats .lab{font-size:13px;color:var(--gray)}
+
+/* MODULES */
+.modules{background:var(--light)}
+.modules .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.modules .card{background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .3s;border:1px solid var(--border);cursor:pointer}
+.modules .card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.08);border-color:var(--green)}
+.modules .card .icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
+.modules .card .icon.blue{background:#dbeafe;color:var(--blue)}
+.modules .card .icon.green{background:#d1fae5;color:var(--green)}
+.modules .card .icon.amber{background:#fef3c7;color:var(--amber)}
+.modules .card .icon.purple{background:#ede9fe;color:#7c3aed}
+.modules .card .icon.teal{background:#ccfbf1;color:var(--teal)}
+.modules .card .icon.red{background:#fee2e2;color:var(--red)}
+.modules .card p{font-size:13px;color:var(--gray);line-height:1.6;margin-top:8px}
+.modules .card .tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.modules .card .tag{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.modules .card .tag.green{background:#d1fae5;color:var(--green)}
+.modules .card .tag.blue{background:#dbeafe;color:var(--blue)}
+.modules .card .tag.amber{background:#fef3c7;color:var(--amber)}
+
+/* AI TABLE */
+.ai-section{background:#fff}
+.ai-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:20px;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.ai-table th{background:var(--dark);color:#fff;padding:12px 16px;text-align:left;font-weight:600}
+.ai-table td{padding:11px 16px;border-bottom:1px solid var(--border)}
+.ai-table tr:nth-child(even){background:var(--light)}
+.ai-table .p0{color:var(--red);font-weight:700}
+.ai-table .p1{color:var(--amber);font-weight:700}
+.ai-table .p2{color:var(--gray);font-weight:700}
+
+/* ROADMAP */
+.roadmap{background:var(--light)}
+.roadmap .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.roadmap .phase{background:#fff;border-radius:16px;padding:28px 24px;border-left:4px solid var(--blue);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.roadmap .phase:nth-child(2){border-left-color:var(--teal)}
+.roadmap .phase:nth-child(3){border-left-color:var(--green)}
+.roadmap .phase .time{font-size:12px;color:var(--gray);font-weight:600;margin-bottom:8px}
+.roadmap .phase h3{font-size:16px}
+.roadmap .phase p{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* METRICS */
+.metrics{background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#fff;text-align:center}
+.metrics h2{color:#fff}
+.metrics .section-sub{color:rgba(255,255,255,.7)}
+.metrics .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.metrics .item{text-align:center}
+.metrics .item .big{font-size:42px;font-weight:900;color:#34d399;margin-bottom:4px}
+.metrics .item .label{font-size:13px;color:rgba(255,255,255,.7)}
+
+/* LAYERS */
+.layers{background:#fff}
+.layers .layer-row{display:flex;align-items:center;gap:16px;padding:20px 24px;background:var(--light);border-radius:12px;margin-bottom:12px;border-left:4px solid var(--blue);transition:all .2s}
+.layers .layer-row:hover{transform:translateX(4px)}
+.layers .layer-row:nth-child(1){border-left-color:var(--green)}
+.layers .layer-row:nth-child(2){border-left-color:var(--blue)}
+.layers .layer-row:nth-child(3){border-left-color:#7c3aed}
+.layers .layer-row:nth-child(4){border-left-color:var(--amber)}
+.layers .layer-row:nth-child(5){border-left-color:var(--red)}
+.layers .layer-row .lname{font-weight:700;min-width:100px;font-size:15px}
+.layers .layer-row .ldesc{color:var(--gray);font-size:13px;line-height:1.5}
+.layers .layer-row .ltags{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.layers .layer-row .ltags span{padding:3px 10px;background:#fff;border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--gray)}
+
+/* FOOTER */
+footer{background:var(--dark);color:rgba(255,255,255,.6);padding:40px 20px;text-align:center;font-size:13px}
+footer a{color:var(--green);text-decoration:none}
+
+@media(max-width:768px){
+  nav{padding:12px 16px}
+  nav .links{display:none}
+  .hero h1{font-size:28px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .modules .grid{grid-template-columns:1fr}
+  .roadmap .phases{grid-template-columns:1fr}
+  .metrics .grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+<div class="logo">🌿 Smart<span>Garden</span> AI</div>
+<ul class="links">
+<li><a href="#modules">功能模块</a></li>
+<li><a href="#ai">AI识别</a></li>
+<li><a href="#roadmap">路线图</a></li>
+<li><a href="#metrics">指标</a></li>
+</ul>
+<button class="btn-nav">免费试用</button>
+</nav>
+
+<section class="hero">
+<h1>用 AI 守护每一片<span>绿地</span></h1>
+<p>面向市政园林管理的综合 AI 解决方案。从病虫害识别到无人机巡检调度，从知识库到数字孪生，让园林养护更智能、更高效。</p>
+<div class="hero-btns">
+<a href="#modules" class="btn-p">探索功能模块</a>
+<a href="https://github.com/yongmababa-pixel/smart-garden" class="btn-o">GitHub 开源</a>
+</div>
+</section>
+
+<section>
+<div class="stats">
+<div class="stat"><div class="num">100+</div><div class="lab">覆盖苗木种类</div></div>
+<div class="stat"><div class="num">50+</div><div class="lab">病虫害识别类型</div></div>
+<div class="stat"><div class="num">90%</div><div class="lab">AI 识别召回率</div></div>
+<div class="stat"><div class="num">50ha</div><div class="lab">单架次巡检覆盖</div></div>
+</div>
+</section>
+
+<section class="modules" id="modules">
+<h2>六大核心模块</h2>
+<p class="section-sub">覆盖园林管理全链路——从知识查询到智能决策</p>
+<div class="grid">
+
+<div class="card">
+<div class="icon green">📚</div>
+<h3>智慧园林知识库</h3>
+<p>苗木百科、病虫害图鉴、养护标准库、AI 智能问答。基于 RAG 架构，覆盖深圳常见园林苗木 100+ 种。</p>
+<div class="tag-row"><span class="tag green">RAG</span><span class="tag green">向量检索</span><span class="tag green">知识图谱</span></div>
+</div>
+
+<div class="card">
+<div class="icon blue">🔍</div>
+<h3>AI 视觉识别</h3>
+<p>无人机/地面相机挂载，自动识别病虫害、枯死、倾斜等 8 类异常。云端+边缘双层推理，每项独立交付验收指标。</p>
+<div class="tag-row"><span class="tag blue">目标检测</span><span class="tag blue">分类模型</span><span class="tag blue">边缘推理</span></div>
+</div>
+
+<div class="card">
+<div class="icon amber">🛸</div>
+<h3>无人机巡检调度</h3>
+<p>GIS 地图航线规划、自动航点生成、实时图传、航拍图片自动入库。支持 KML/GeoJSON 导入。</p>
+<div class="tag-row"><span class="tag amber">航线规划</span><span class="tag amber">实时图传</span><span class="tag amber">GPS定位</span></div>
+</div>
+
+<div class="card">
+<div class="icon purple">📋</div>
+<h3>工单与养护管理</h3>
+<p>AI 识别自动派单→养护工人接收→处置指引→现场反馈→管理员验收。全流程可追溯闭环。</p>
+<div class="tag-row"><span class="tag purple">智能派单</span><span class="tag purple">工单流转</span><span class="tag purple">处置指引</span></div>
+</div>
+
+<div class="card">
+<div class="icon teal">🗺️</div>
+<h3>GIS 可视化大屏</h3>
+<p>植被一张图、巡检轨迹回放、病虫害热力图、名木古树专项档案。园林局管理驾驶舱。</p>
+<div class="tag-row"><span class="tag teal">Cesium.js</span><span class="tag teal">热力图</span><span class="tag teal">大屏展示</span></div>
+</div>
+
+<div class="card">
+<div class="icon red">🧬</div>
+<h3>数字孪生 & 智能决策</h3>
+<p>无人机+土壤传感器+气象数据融合建模。植被生长预测、智能养护建议、碳排放核算。</p>
+<div class="tag-row"><span class="tag red">数字孪生</span><span class="tag red">预测模型</span><span class="tag red">碳排放</span></div>
+</div>
+
+</div>
+</section>
+
+<section class="ai-section" id="ai">
+<h2>AI 识别类目与验收指标</h2>
+<p class="section-sub">每项识别任务独立评估，算法交付前需提供测试集指标报告，园林局专家人工抽检达标方可上线</p>
+<table class="ai-table">
+<thead><tr><th>识别任务</th><th>召回率</th><th>误报率上限</th><th>优先级</th><th>部署方式</th></tr></thead>
+<tbody>
+<tr><td>🌿 植被枯死/枯黄检测</td><td>≥90%</td><td>≤10%</td><td class="p0">P0</td><td>边缘+云端</td></tr>
+<tr><td>🪲 常见虫害识别（蚜虫、介壳虫、天牛等8类）</td><td>≥85%</td><td>≤15%</td><td class="p0">P0</td><td>云端精细</td></tr>
+<tr><td>🍂 常见病害识别（白粉病、锈病、炭疽病等6类）</td><td>≥80%</td><td>≤20%</td><td class="p1">P1</td><td>云端精细</td></tr>
+<tr><td>🌱 草坪斑秃/退化检测</td><td>≥85%</td><td>≤10%</td><td class="p1">P1</td><td>边缘+云端</td></tr>
+<tr><td>🌳 乔木倾斜/倒伏检测</td><td>≥95%</td><td>≤5%</td><td class="p0">P0</td><td>边缘实时</td></tr>
+<tr><td>💧 灌溉设施破损检测</td><td>≥80%</td><td>≤15%</td><td class="p2">P2</td><td>云端</td></tr>
+<tr><td>🌍 外来入侵物种识别</td><td>≥75%</td><td>≤25%</td><td class="p2">P2</td><td>云端</td></tr>
+<tr><td>🏛️ 名木古树长势评估</td><td>≥85%</td><td>≤10%</td><td class="p1">P1</td><td>多模态融合</td></tr>
+</tbody></table>
+</section>
+
+<section class="roadmap" id="roadmap">
+<h2>技术演进路线</h2>
+<p class="section-sub">三段式推进——从云端到边缘，从单点到全生命周期</p>
+<div class="phases">
+<div class="phase">
+<div class="time">短期 · 0-6 个月</div>
+<h3>☁️ 云端弹性 GPU 调度</h3>
+<p>航拍图片批量推理时按需启动 GPU，推理完成自动释放。降低客户运维成本，无需常驻 GPU 服务器。K8s + GPU Operator 实现弹性扩缩容。</p>
+</div>
+<div class="phase">
+<div class="time">中期 · 6-12 个月</div>
+<h3>📡 机载轻量 AI 边缘计算</h3>
+<p>植被异常检测在 NVIDIA Jetson 边缘盒子本地执行。仅将疑似异常的图片回传云端精细推理，减少 80% 图片传输量和云端算力消耗。</p>
+</div>
+<div class="phase">
+<div class="time">长期 · 12-24 个月</div>
+<h3>🌐 园林数字孪生</h3>
+<p>融合无人机巡检 + 土壤传感器 + 气象数据 + 历史养护记录。建立植被生长预测模型，为园林局提供"何时修剪/何时施肥/何时喷药"的智能决策。</p>
+</div>
+</div>
+</section>
+
+<section class="layers">
+<h2>五层产品架构</h2>
+<p class="section-sub">从硬件采集到智能决策的完整技术栈</p>
+<div class="layer-row"><span class="lname">🌐 应用层</span><span class="ldesc">Web管理后台 · 微信小程序 · GIS可视化大屏 · 数据报表</span><span class="ltags"><span>Vue.js</span><span>Cesium.js</span><span>微信原生</span></span></div>
+<div class="layer-row"><span class="lname">⚙️ 业务层</span><span class="ldesc">无人机调度 · 工单管理 · AI识别管线 · 养护决策引擎 · 知识库检索</span><span class="ltags"><span>Spring Boot</span><span>FastAPI</span><span>Celery</span></span></div>
+<div class="layer-row"><span class="lname">🧠 AI引擎层</span><span class="ldesc">病虫害识别 · 植被分类 · 变化检测 · 云端GPU推理 · 边缘轻量推理</span><span class="ltags"><span>PyTorch</span><span>ONNX</span><span>K8s GPU</span></span></div>
+<div class="layer-row"><span class="lname">💾 数据层</span><span class="ldesc">园林知识库 · 苗木档案 · 巡检图片 · 土壤传感器 · 气象数据 · 养护记录</span><span class="ltags"><span>PostgreSQL</span><span>Milvus</span><span>Redis</span></span></div>
+<div class="layer-row"><span class="lname">🔌 硬件层</span><span class="ldesc">无人机+机载相机 · 土壤传感器 · 气象站 · 边缘计算盒子 · 5G/4G通信模组</span><span class="ltags"><span>Jetson</span><span>RK3588</span><span>MQTT</span></span></div>
+</section>
+
+<section class="metrics" id="metrics">
+<h2>验收指标体系</h2>
+<p class="section-sub">量化交付，拒绝模糊承诺</p>
+<div class="grid">
+<div class="item"><div class="big">≥90%</div><div class="label">枯死检测召回率</div></div>
+<div class="item"><div class="big">≥85%</div><div class="label">虫害 Top-3 准确率</div></div>
+<div class="item"><div class="big">≤48h</div><div class="label">工单闭环中位数</div></div>
+<div class="item"><div class="big">≤¥5</div><div class="label">GPU 推理/公顷成本</div></div>
+</div>
+</section>
+
+<footer>
+<p>Smart Garden AI · MIT 开源协议 · <a href="https://github.com/yongmababa-pixel/smart-garden">GitHub</a></p>
+<p style="margin-top:8px">© 2026 马永</p>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60)
+})
+</script>
+</body>
+</html>
